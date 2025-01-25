@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenBounty - Projects</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="bounties.html">Bounties</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="community.html">Community</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="projects-hero" class="fade-in">
+            <h1>Explore Open Source Projects</h1>
+            <p>Discover exciting projects and start contributing today</p>
+        </section>
+
+        <section id="project-search" class="fade-in">
+            <input type="text" id="search-input" placeholder="Search projects...">
+            <div id="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+                <button class="filter-btn" data-filter="ai">AI</button>
+                <button class="filter-btn" data-filter="data">Data</button>
+            </div>
+        </section>
+
+        <section id="project-list" class="fade-in">
+            <!-- Projects will be dynamically added here -->
+        </section>
+
+        <section id="project-stats" class="fade-in">
+            <h2>Project Statistics</h2>
+            <div id="stats-container">
+                <!-- Dynamic stats will be added here using JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 OpenBounty. All rights reserved.</p>
+    </footer>
+
+    <div id="ai-assistant" class="minimized">
+        <div id="ai-assistant-header">
+            <h3>AI Assistant</h3>
+            <button id="ai-assistant-toggle">↗</button>
+        </div>
+        <div id="ai-assistant-messages"></div>
+        <div id="ai-assistant-input">
+            <input type="text" placeholder="Ask me anything...">
+            <button>Send</button>
+        </div>
+    </div>
+
+    <button id="color-theme-toggle">🎨</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="projects.js"></script>
+    <script src="theme.js"></script>
+    <script src="ai-assistant.js"></script>
+</body>
+</html>
+

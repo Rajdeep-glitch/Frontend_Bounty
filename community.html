@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenBounty - Community</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="bounties.html">Bounties</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="community.html" class="active">Community</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="community-hero" class="fade-in">
+            <h1>Join Our Thriving Community</h1>
+            <p>Connect, collaborate, and grow with fellow developers</p>
+        </section>
+
+        <section id="community-highlights" class="fade-in">
+            <h2>Community Highlights</h2>
+            <div class="card-container">
+                <div class="card" data-aos="fade-up">
+                    <h3>Developer of the Month</h3>
+                    <div id="developer-of-month"></div>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Top Contributors</h3>
+                    <ul id="top-contributors"></ul>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Recent Achievements</h3>
+                    <ul id="recent-achievements"></ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="community-events" class="fade-in">
+            <h2>Upcoming Events</h2>
+            <div id="events-calendar"></div>
+        </section>
+
+        <section id="community-forum" class="fade-in">
+            <h2>Community Forum</h2>
+            <div id="forum-preview"></div>
+            <a href="#" class="btn">Visit Full Forum</a>
+        </section>
+
+        <section id="join-community" class="fade-in">
+            <h2>Join Our Community</h2>
+            <p>Be part of our growing network of developers and contributors!</p>
+            <a href="#" class="btn pulse">Sign Up Now</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 OpenBounty. All rights reserved.</p>
+    </footer>
+
+    <div id="ai-assistant" class="minimized">
+        <div id="ai-assistant-header">
+            <h3>AI Assistant</h3>
+            <button id="ai-assistant-toggle">↗</button>
+        </div>
+        <div id="ai-assistant-messages"></div>
+        <div id="ai-assistant-input">
+            <input type="text" placeholder="Ask me anything...">
+            <button>Send</button>
+        </div>
+    </div>
+
+    <button id="color-theme-toggle">🎨</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="community.js"></script>
+    <script src="theme.js"></script>
+    <script src="ai-assistant.js"></script>
+</body>
+</html>
+

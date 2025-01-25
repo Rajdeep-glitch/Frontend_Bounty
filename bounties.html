@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenBounty - Active Bounties</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="bounties.html">Bounties</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="bounties-hero" class="fade-in">
+            <h1>Active Bounties</h1>
+            <p>Find exciting opportunities to contribute and earn rewards</p>
+        </section>
+
+        <section id="bounty-search" class="fade-in">
+            <input type="text" id="search-input" placeholder="Search bounties...">
+            <div id="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="easy">Easy</button>
+                <button class="filter-btn" data-filter="medium">Medium</button>
+                <button class="filter-btn" data-filter="hard">Hard</button>
+            </div>
+        </section>
+
+        <section id="bounty-list" class="fade-in">
+            <!-- Bounties will be dynamically added here -->
+        </section>
+
+        <section id="bounty-stats" class="fade-in">
+            <h2>Bounty Statistics</h2>
+            <div id="stats-container">
+                <!-- Dynamic stats will be added here using JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 OpenBounty. All rights reserved.</p>
+    </footer>
+
+    <script src="bounties.js"></script>
+    <script src="theme.js"></script>
+    <button id="color-theme-toggle">🎨</button>
+</body>
+</html>
+
