@@ -1,13 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
   const aiAssistant = document.getElementById("ai-assistant")
+  const aiHeader = document.getElementById("ai-assistant-header")
   const aiToggle = document.getElementById("ai-assistant-toggle")
   const aiMessages = document.getElementById("ai-assistant-messages")
   const aiInput = document.getElementById("ai-assistant-input").querySelector("input")
   const aiSendButton = document.getElementById("ai-assistant-input").querySelector("button")
 
-  aiToggle.addEventListener("click", () => {
-    aiAssistant.classList.toggle("minimized")
-    aiToggle.textContent = aiAssistant.classList.contains("minimized") ? "↗" : "▼"
+  // Initialize AI assistant state
+  let isMinimized = true
+  let conversationHistory = []
+
+  // Load conversation history from localStorage
+  const savedHistory = localStorage.getItem("aiConversationHistory")
+  if (savedHistory) {
+    conversationHistory = JSON.parse(savedHistory)
+    conversationHistory.forEach((message) => displayMessage(message.text, message.type))
+  }
+
+  function toggleAIAssistant() {
+    isMinimized = !isMinimized
+    aiAssistant.classList.toggle("minimized", isMinimized)
+    aiToggle.innerHTML = isMinimized ? '<i class="fas fa-expand-alt"></i>' : '<i class="fas fa-compress-alt"></i>'
+    aiToggle.setAttribute("aria-label", isMinimized ? "Expand AI Assistant" : "Minimize AI Assistant")
+    aiAssistant.setAttribute("aria-expanded", !isMinimized)
+    if (!isMinimized) {
+      aiInput.focus()
+    }
+  }
+
+  aiHeader.addEventListener("click", toggleAIAssistant)
+  aiToggle.addEventListener("click", (e) => {
+    e.stopPropagation()
+    toggleAIAssistant()
   })
 
   async function sendMessage() {
@@ -19,6 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
       // Simulate AI response
       const aiResponse = await getAIResponse(userMessage)
       displayMessage(aiResponse, "ai-message")
+
+      // Save conversation history
+      conversationHistory.push({ text: userMessage, type: "user-message" })
+      conversationHistory.push({ text: aiResponse, type: "ai-message" })
+      localStorage.setItem("aiConversationHistory", JSON.stringify(conversationHistory))
     }
   }
 
@@ -64,7 +93,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
 
+  // Accessibility improvements
+  aiAssistant.setAttribute("role", "region")
+  aiAssistant.setAttribute("aria-label", "AI Assistant")
+  aiAssistant.setAttribute("aria-expanded", "false")
+  aiHeader.setAttribute("role", "button")
+  aiHeader.setAttribute("tabindex", "0")
+  aiHeader.setAttribute("aria-label", "Toggle AI Assistant")
+  aiToggle.setAttribute("aria-hidden", "true")
+  aiInput.setAttribute("aria-label", "Type your message")
+  aiSendButton.setAttribute("aria-label", "Send message")
+
+  // Keyboard accessibility for the header
+  aiHeader.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault()
+      toggleAIAssistant()
+    }
+  })
+
   // Initial greeting
-  displayMessage("Hello! How can I assist you with OpenBounty today?", "ai-message")
+  if (conversationHistory.length === 0) {
+    displayMessage("Hello! How can I assist you with OpenBounty today?", "ai-message")
+  }
+
+  // Add a keyboard shortcut to toggle the AI assistant
+  document.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.key === "/") {
+      toggleAIAssistant()
+    }
+  })
 })
 
