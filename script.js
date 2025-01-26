@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const featuredProjectCard = document.getElementById("featured-project-card")
   const newsletterForm = document.getElementById("newsletter-form")
   const newsletterMessage = document.getElementById("newsletter-message")
+  const header = document.getElementById("main-header")
 
   // Simulated live statistics update
   function updateLiveStats() {
@@ -43,13 +44,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (featuredProjectCard) {
       const project = featuredProjects[Math.floor(Math.random() * featuredProjects.length)]
       featuredProjectCard.innerHTML = `
-                <h3>${project.name}</h3>
-                <p>${project.description}</p>
-                <div class="progress-bar">
-                    <div class="progress-bar-fill" style="width: ${project.progress}%"></div>
-                </div>
-                <p>Progress: ${project.progress}%</p>
-            `
+        <h3>${project.name}</h3>
+        <p>${project.description}</p>
+        <div class="progress-bar">
+          <div class="progress-bar-fill" style="width: ${project.progress}%"></div>
+        </div>
+        <p>Progress: ${project.progress}%</p>
+      `
     }
   }
 
@@ -93,22 +94,80 @@ document.addEventListener("DOMContentLoaded", () => {
   const sections = document.querySelectorAll("section[id]")
   const navLinks = document.querySelectorAll("nav ul li a")
 
-  window.addEventListener("scroll", () => {
-    let current = ""
+  function updateActiveNavLink() {
+    const scrollY = window.pageYOffset
+
     sections.forEach((section) => {
-      const sectionTop = section.offsetTop
-      const sectionHeight = section.clientHeight
-      if (pageYOffset >= sectionTop - sectionHeight / 3) {
-        current = section.getAttribute("id")
+      const sectionHeight = section.offsetHeight
+      const sectionTop = section.offsetTop - 50
+      const sectionId = section.getAttribute("id")
+
+      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        navLinks.forEach((link) => {
+          link.classList.remove("active")
+          if (link.getAttribute("href").includes(sectionId)) {
+            link.classList.add("active")
+          }
+        })
       }
     })
+  }
 
-    navLinks.forEach((link) => {
-      link.classList.remove("active")
-      if (link.getAttribute("href").includes(current)) {
-        link.classList.add("active")
+  window.addEventListener("scroll", updateActiveNavLink)
+
+  // Add scroll event listener for header
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      header.classList.add("scrolled")
+    } else {
+      header.classList.remove("scrolled")
+    }
+  })
+
+  // Fade in elements as they come into view
+  const fadeElements = document.querySelectorAll(".fade-in")
+  const fadeOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -100px 0px",
+  }
+
+  const fadeObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible")
+        observer.unobserve(entry.target)
+      }
+    })
+  }, fadeOptions)
+
+  fadeElements.forEach((element) => {
+    fadeObserver.observe(element)
+  })
+
+  // Page transition effect
+  const pageTransition = document.querySelector(".page-transition")
+
+  function startPageTransition() {
+    pageTransition.classList.add("active")
+  }
+
+  function endPageTransition() {
+    pageTransition.classList.remove("active")
+  }
+
+  document.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", (e) => {
+      if (link.hostname === window.location.hostname) {
+        e.preventDefault()
+        const href = link.getAttribute("href")
+        startPageTransition()
+        setTimeout(() => {
+          window.location.href = href
+        }, 500)
       }
     })
   })
+
+  window.addEventListener("pageshow", endPageTransition)
 })
 

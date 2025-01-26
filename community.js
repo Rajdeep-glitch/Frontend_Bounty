@@ -68,11 +68,11 @@ document.addEventListener("DOMContentLoaded", () => {
     eventsCalendar.innerHTML = events
       .map(
         (e) => `
-            <div class="event-item">
-                <span class="event-date">${new Date(e.date).toLocaleDateString()}</span>
-                <span class="event-title">${e.title}</span>
-            </div>
-        `,
+                <div class="event-item">
+                    <span class="event-date">${new Date(e.date).toLocaleDateString()}</span>
+                    <span class="event-title">${e.title}</span>
+                </div>
+            `,
       )
       .join("")
   }
@@ -87,11 +87,11 @@ document.addEventListener("DOMContentLoaded", () => {
     forumPreview.innerHTML = forumPosts
       .map(
         (p) => `
-            <div class="forum-post">
-                <h4>${p.title}</h4>
-                <p>By ${p.author} | ${p.replies} replies</p>
-            </div>
-        `,
+                <div class="forum-post">
+                    <h4>${p.title}</h4>
+                    <p>By ${p.author} | ${p.replies} replies</p>
+                </div>
+            `,
       )
       .join("")
   }

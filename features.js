@@ -19,13 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function createProjectCard(project) {
     const projectCard = document.createElement("div")
-    projectCard.classList.add("project-card")
+    projectCard.classList.add("card", "dynamic-element")
     projectCard.innerHTML = `
             <h3>${project.name}</h3>
             <p>${project.description}</p>
             <div>
                 ${project.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
             </div>
+            <button class="btn explore-project">Explore Project</button>
         `
     return projectCard
   }
@@ -42,10 +43,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   populateProjectExplorer()
 
-  // Add hover effect to project cards
+  // Add hover effect and click event to project cards
   if (projectExplorer) {
     projectExplorer.addEventListener("mouseover", (e) => {
-      const card = e.target.closest(".project-card")
+      const card = e.target.closest(".card")
       if (card) {
         card.style.transform = "scale(1.05)"
         card.style.transition = "transform 0.3s ease"
@@ -53,9 +54,17 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     projectExplorer.addEventListener("mouseout", (e) => {
-      const card = e.target.closest(".project-card")
+      const card = e.target.closest(".card")
       if (card) {
         card.style.transform = "scale(1)"
+      }
+    })
+
+    projectExplorer.addEventListener("click", (e) => {
+      if (e.target.classList.contains("explore-project")) {
+        const projectName = e.target.closest(".card").querySelector("h3").textContent
+        alert(`Exploring project: ${projectName}`)
+        // In a real application, this would navigate to the project page
       }
     })
   }
@@ -102,6 +111,7 @@ function greeting(name) {
             <div id="chat-box">
                 <div id="chat-messages"></div>
                 <input type="text" id="chat-input" placeholder="Type your message...">
+                <button id="send-chat" class="btn">Send</button>
             </div>
         </div>
     `,
@@ -162,7 +172,8 @@ function greeting(name) {
         const codeEditor = document.getElementById("code-editor")
         const chatInput = document.getElementById("chat-input")
         const chatMessages = document.getElementById("chat-messages")
-        if (codeEditor && chatInput && chatMessages) {
+        const sendChatBtn = document.getElementById("send-chat")
+        if (codeEditor && chatInput && chatMessages && sendChatBtn) {
           codeEditor.addEventListener("input", () => {
             // Simulate real-time collaboration
             setTimeout(() => {
@@ -170,9 +181,9 @@ function greeting(name) {
               chatMessages.scrollTop = chatMessages.scrollHeight
             }, 2000)
           })
-          chatInput.addEventListener("keypress", (e) => {
-            if (e.key === "Enter") {
-              const message = chatInput.value
+          sendChatBtn.addEventListener("click", () => {
+            const message = chatInput.value
+            if (message) {
               chatMessages.innerHTML += `<p><strong>You:</strong> ${message}</p>`
               chatInput.value = ""
               chatMessages.scrollTop = chatMessages.scrollHeight
