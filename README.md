@@ -1,0 +1,1 @@
+Welcome to the OpenSource Bounty Website! This platform connects developers with project maintainers and organizations offering bounties for solving real-world coding challenges. Contributors can browse available bounties, submit solutions, and get rewarded for their work.
