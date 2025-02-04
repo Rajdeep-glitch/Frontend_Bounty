@@ -11,12 +11,12 @@
     <header>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="features.html">Features</a></li>
-                <li><a href="bounties.html">Bounties</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="community.html" class="active">Community</a></li>
-                <li><a href="login.html">Login</a></li>
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="features.html"><i class="fas fa-star"></i> Features</a></li>
+                <li><a href="bounties.html"><i class="fas fa-trophy"></i> Bounties</a></li>
+                <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+                <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
             </ul>
         </nav>
     </header>
@@ -27,6 +27,14 @@
             <p>Connect, collaborate, and grow with fellow developers</p>
         </section>
 
+        <!-- Open Source Explanation Section -->
+        <section id="open-source-explanation" class="fade-in">
+            <h2>What is Open Source?</h2>
+            <p>Open-source software is freely available for anyone to use, modify, and distribute. It's a collaborative effort to improve and enhance projects with contributions from developers worldwide. By contributing to open-source projects, you can develop your skills and help others while earning rewards through bounty programs.</p>
+            <button id="more-info" class="btn">Learn More About Open Source</button>
+        </section>
+
+        <!-- Community Highlights Section -->
         <section id="community-highlights" class="fade-in">
             <h2>Community Highlights</h2>
             <div class="card-container">
@@ -45,17 +53,60 @@
             </div>
         </section>
 
+        <!-- Open Source Projects Section -->
+        <section id="open-source-projects" class="fade-in">
+            <h2>Explore Open Source Projects</h2>
+            <div id="open-source-projects-list">
+                <!-- Project items will be dynamically injected here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Real-Time Bounty Opportunities Section -->
+        <section id="bounty-opportunities" class="fade-in">
+            <h2>Real-Time Bounty Opportunities</h2>
+            <div id="bounty-feed">
+                <ul>
+                    <li>Fix bug in project XYZ - Reward: $50</li>
+                    <li>Develop a new feature for OpenApp - Reward: $100</li>
+                    <li>Review pull requests for Project ABC - Reward: $25</li>
+                </ul>
+                <button id="view-all-bounties" class="btn">View All Bounties</button>
+            </div>
+        </section>
+
+        <!-- Bounty Stats Section -->
+        <section id="bounty-stats" class="fade-in">
+            <h2>Live Bounty Stats</h2>
+            <div id="bounty-stats-list">
+                <!-- Bounty stats will be dynamically injected here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Q&A Section: Ask About Open Source/Bounties -->
+        <section id="community-qa" class="fade-in">
+            <h2>Ask About Open Source & Bounties</h2>
+            <p>Got questions? Ask our community experts about open-source contributions, bounty programs, and how you can get involved.</p>
+            <div id="qa-section">
+                <input type="text" id="question-input" placeholder="Ask your question...">
+                <button id="ask-question" class="btn">Ask</button>
+            </div>
+            <div id="qa-responses"></div>
+        </section>
+
+        <!-- Community Events Section -->
         <section id="community-events" class="fade-in">
             <h2>Upcoming Events</h2>
             <div id="events-calendar"></div>
         </section>
 
+        <!-- Community Forum Section -->
         <section id="community-forum" class="fade-in">
             <h2>Community Forum</h2>
             <div id="forum-preview"></div>
             <a href="#" class="btn">Visit Full Forum</a>
         </section>
 
+        <!-- Join the Community Section -->
         <section id="join-community" class="fade-in">
             <h2>Join Our Community</h2>
             <p>Be part of our growing network of developers and contributors!</p>
@@ -84,7 +135,5 @@
             <button><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
-
 </body>
 </html>
-

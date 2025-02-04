@@ -10,10 +10,12 @@
     <header>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="features.html">Features</a></li>
-                <li><a href="bounties.html">Bounties</a></li>
-                <li><a href="login.html">Login</a></li>
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="features.html"><i class="fas fa-star"></i> Features</a></li>
+                <li><a href="bounties.html"><i class="fas fa-trophy"></i> Bounties</a></li>
+                <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+                <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
             </ul>
         </nav>
     </header>
@@ -62,6 +64,43 @@
                 <p>Already have an account? <a href="#" id="show-login">Login</a></p>
             </div>
         </section>
+
+        <!-- Open Source and Bounty Concepts -->
+        <section id="open-source-concept" class="fade-in">
+            <h2><i class="fas fa-code-branch"></i> Open Source Concept</h2>
+            <p>Open source development is the practice of making the source code of software freely available to anyone, allowing them to view, modify, and distribute the code. This fosters collaboration, innovation, and the creation of new features by a community of developers.</p>
+            
+            <h3>Why Open Source?</h3>
+            <ul>
+                <li><strong>Collaboration:</strong> Developers from around the world can contribute and improve the software.</li>
+                <li><strong>Transparency:</strong> Anyone can inspect the code to ensure there are no hidden vulnerabilities.</li>
+                <li><strong>Community-Driven:</strong> Open source projects often thrive because of the community that supports them.</li>
+                <li><strong>Freedom:</strong> Users and developers can customize the software to fit their needs.</li>
+            </ul>
+            <button id="explore-open-source" class="btn">Explore Open Source Projects</button>
+            <div id="open-source-tooltip" class="tooltip" style="display: none;">
+                <p>Open Source projects encourage collaboration. Fork a project to contribute to its development.</p>
+            </div>
+        </section>
+
+        <section id="bounty-concept" class="fade-in">
+            <h2><i class="fas fa-trophy"></i> Bounty System Concept</h2>
+            <p>The bounty system enables individuals or organizations to offer rewards for solving specific problems or tasks within open-source projects. It’s an effective way to encourage contribution and maintain continuous project development.</p>
+            
+            <h3>How the Bounty System Works</h3>
+            <ul>
+                <li><strong>Task Creation:</strong> A task or issue is posted in the repository, with details of what needs to be done.</li>
+                <li><strong>Bounty Offer:</strong> A bounty (a monetary or other reward) is attached to the task to incentivize contributors.</li>
+                <li><strong>Contribution:</strong> Developers submit a solution or improvement for the task posted.</li>
+                <li><strong>Reward Allocation:</strong> If the solution meets the requirements, the reward is given to the contributor.</li>
+            </ul>
+            <button id="explore-bounties" class="btn">Explore Available Bounties</button>
+        </section>
+
+        <section id="interactive-quiz" class="fade-in">
+            <h3>Interactive Quiz: Test Your Open Source Knowledge!</h3>
+            <button id="quiz-btn" class="btn">Start Quiz</button>
+        </section>
     </main>
 
     <footer>
@@ -71,6 +110,7 @@
     <script src="login.js"></script>
     <script src="theme.js"></script>
     <button id="color-theme-toggle">🎨</button>
+
     <div id="ai-assistant" class="minimized">
         <div id="ai-assistant-header">
             <h3><i class="fas fa-robot"></i> AI Assistant</h3>
@@ -86,4 +126,3 @@
     <script src="ai-assistant.js"></script>
 </body>
 </html>
-

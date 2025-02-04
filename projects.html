@@ -11,12 +11,12 @@
     <header>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="features.html">Features</a></li>
-                <li><a href="bounties.html">Bounties</a></li>
-                <li><a href="projects.html" class="active">Projects</a></li>
-                <li><a href="community.html">Community</a></li>
-                <li><a href="login.html">Login</a></li>
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="features.html"><i class="fas fa-star"></i> Features</a></li>
+                <li><a href="bounties.html"><i class="fas fa-trophy"></i> Bounties</a></li>
+                <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+                <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
             </ul>
         </nav>
     </header>
@@ -24,7 +24,7 @@
     <main>
         <section id="projects-hero" class="fade-in">
             <h1>Explore Open Source Projects</h1>
-            <p>Discover exciting projects and start contributing today</p>
+            <p>Discover exciting projects, claim bounties, and start contributing today!</p>
         </section>
 
         <section id="project-search" class="fade-in">
@@ -48,6 +48,30 @@
                 <!-- Dynamic stats will be added here using JavaScript -->
             </div>
         </section>
+
+        <section id="open-source-concept" class="fade-in">
+            <h2><i class="fas fa-code-branch"></i> Open Source Contribution Guide</h2>
+            <p>Learn how to contribute to open-source projects:</p>
+            <ul>
+                <li><strong>Fork:</strong> Make a copy of a project to work on.</li>
+                <li><strong>Clone:</strong> Download the project to your local machine for development.</li>
+                <li><strong>Pull Request:</strong> Submit your changes to the project’s main repository.</li>
+                <li><strong>Issues:</strong> Report bugs or suggest features.</li>
+            </ul>
+        </section>
+
+        <section id="bounty-system" class="fade-in">
+            <h2><i class="fas fa-trophy"></i> Open Source Bounties</h2>
+            <p>Get paid for contributing to open-source projects! Check out the ongoing bounties and start earning:</p>
+            <button id="view-bounties-btn" class="btn">View Active Bounties</button>
+        </section>
+
+        <section id="discussion-forum" class="fade-in">
+            <h2><i class="fas fa-comments"></i> Project Discussion Forum</h2>
+            <p>Discuss the latest developments, bugs, and improvements for each project. Get involved in the community!</p>
+            <button id="start-discussion-btn" class="btn">Start a Discussion</button>
+        </section>
+
     </main>
 
     <footer>
@@ -74,4 +98,3 @@
     <script src="ai-assistant.js"></script>
 </body>
 </html>
-

@@ -1,127 +1,102 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const aiAssistant = document.getElementById("ai-assistant")
-  const aiHeader = document.getElementById("ai-assistant-header")
-  const aiToggle = document.getElementById("ai-assistant-toggle")
-  const aiMessages = document.getElementById("ai-assistant-messages")
-  const aiInput = document.getElementById("ai-assistant-input").querySelector("input")
-  const aiSendButton = document.getElementById("ai-assistant-input").querySelector("button")
+  const aiAssistant = document.getElementById("ai-assistant");
+  const aiHeader = document.getElementById("ai-assistant-header");
+  const aiToggle = document.getElementById("ai-assistant-toggle");
+  const aiMessages = document.getElementById("ai-assistant-messages");
+  const aiInput = document.getElementById("ai-input");
+  const aiSendButton = document.getElementById("ai-assistant-input").querySelector("button");
+
+  // Initialize GeminiAI
+  const ai = require("./../../BackendProjects/Gemini_Node.js");
+  const aiModel = new ai.GeminiAI();
 
   // Initialize AI assistant state
-  let isMinimized = true
-  let conversationHistory = []
-
-  // Load conversation history from localStorage
-  const savedHistory = localStorage.getItem("aiConversationHistory")
-  if (savedHistory) {
-    conversationHistory = JSON.parse(savedHistory)
-    conversationHistory.forEach((message) => displayMessage(message.text, message.type))
-  }
+  let isMinimized = true;
 
   function toggleAIAssistant() {
-    isMinimized = !isMinimized
-    aiAssistant.classList.toggle("minimized", isMinimized)
-    aiToggle.innerHTML = isMinimized ? '<i class="fas fa-expand-alt"></i>' : '<i class="fas fa-compress-alt"></i>'
-    aiToggle.setAttribute("aria-label", isMinimized ? "Expand AI Assistant" : "Minimize AI Assistant")
-    aiAssistant.setAttribute("aria-expanded", !isMinimized)
+    isMinimized = !isMinimized;
+    aiAssistant.classList.toggle("minimized", isMinimized);
+    aiToggle.innerHTML = isMinimized ? '<i class="fas fa-expand-alt"></i>' : '<i class="fas fa-compress-alt"></i>';
+    aiToggle.setAttribute("aria-label", isMinimized ? "Expand AI Assistant" : "Minimize AI Assistant");
+    aiAssistant.setAttribute("aria-expanded", !isMinimized);
     if (!isMinimized) {
-      aiInput.focus()
+      aiInput.focus();
     }
   }
 
-  aiHeader.addEventListener("click", toggleAIAssistant)
+  aiHeader.addEventListener("click", toggleAIAssistant);
   aiToggle.addEventListener("click", (e) => {
-    e.stopPropagation()
-    toggleAIAssistant()
-  })
+    e.stopPropagation();
+    toggleAIAssistant();
+  });
 
   async function sendMessage() {
-    const userMessage = aiInput.value.trim()
+    const userMessage = aiInput.value.trim();
     if (userMessage) {
-      displayMessage(userMessage, "user-message")
-      aiInput.value = ""
+      displayMessage(userMessage, "user-message");
+      aiInput.value = "";
 
-      // Simulate AI response
-      const aiResponse = await getAIResponse(userMessage)
-      displayMessage(aiResponse, "ai-message")
-
-      // Save conversation history
-      conversationHistory.push({ text: userMessage, type: "user-message" })
-      conversationHistory.push({ text: aiResponse, type: "ai-message" })
-      localStorage.setItem("aiConversationHistory", JSON.stringify(conversationHistory))
+      // Get AI response from GeminiAI
+      const aiResponse = await aiModel.getResponse(userMessage);
+      displayMessage(aiResponse, "ai-message");
     }
   }
 
   function displayMessage(message, className) {
-    const messageElement = document.createElement("div")
-    messageElement.classList.add(className)
-    messageElement.textContent = message
-    aiMessages.appendChild(messageElement)
-    aiMessages.scrollTop = aiMessages.scrollHeight
+    const messageElement = document.createElement("div");
+    messageElement.classList.add(className);
+    messageElement.textContent = message;
+    aiMessages.appendChild(messageElement);
+    aiMessages.scrollTop = aiMessages.scrollHeight;
   }
 
-  async function getAIResponse(userMessage) {
-    // Simulate AI processing time
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-
-    const responses = {
-      hello: "Hello! How can I assist you with OpenBounty today?",
-      features:
-        "OpenBounty offers features like project exploration, bounty system, skill matching, and collaboration tools. Which one would you like to know more about?",
-      bounties:
-        "Our bounty system allows developers to earn rewards for completing tasks and contributing to open-source projects. You can find available bounties on our Bounties page.",
-      projects:
-        "We have a wide range of open-source projects available. You can explore them on our Projects page and find ones that match your skills and interests.",
-      community:
-        "Our community is a vibrant space for developers to connect, collaborate, and grow. Check out our Community page for events, forums, and more!",
-      help: "I'm here to help! You can ask me about OpenBounty's features, how to get started, or any specific questions about our platform.",
-    }
-
-    const lowercaseMessage = userMessage.toLowerCase()
-    for (const [keyword, response] of Object.entries(responses)) {
-      if (lowercaseMessage.includes(keyword)) {
-        return response
-      }
-    }
-
-    return "I'm not sure how to respond to that. Can you try asking about our features, bounties, projects, or community?"
-  }
-
-  aiSendButton.addEventListener("click", sendMessage)
+  aiSendButton.addEventListener("click", sendMessage);
   aiInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
-      sendMessage()
+      sendMessage();
     }
-  })
+  });
 
   // Accessibility improvements
-  aiAssistant.setAttribute("role", "region")
-  aiAssistant.setAttribute("aria-label", "AI Assistant")
-  aiAssistant.setAttribute("aria-expanded", "false")
-  aiHeader.setAttribute("role", "button")
-  aiHeader.setAttribute("tabindex", "0")
-  aiHeader.setAttribute("aria-label", "Toggle AI Assistant")
-  aiToggle.setAttribute("aria-hidden", "true")
-  aiInput.setAttribute("aria-label", "Type your message")
-  aiSendButton.setAttribute("aria-label", "Send message")
+  aiAssistant.setAttribute("role", "region");
+  aiAssistant.setAttribute("aria-label", "AI Assistant");
+  aiAssistant.setAttribute("aria-expanded", "false");
+  aiHeader.setAttribute("role", "button");
+  aiHeader.setAttribute("tabindex", "0");
+  aiHeader.setAttribute("aria-label", "Toggle AI Assistant");
+  aiToggle.setAttribute("aria-hidden", "true");
+  aiInput.setAttribute("aria-label", "Type your message");
+  aiSendButton.setAttribute("aria-label", "Send message");
 
-  // Keyboard accessibility for the header
-  aiHeader.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault()
-      toggleAIAssistant()
+  // Initial greeting with Open Source and Bounty Concepts
+  displayMessage("Hello! How can I assist you with Open Source or Bounty projects today?", "ai-message");
+
+  // Content related to open-source and bounty systems
+  const openSourceMessage = "Open source is a practice where developers share the source code of a project publicly, allowing anyone to view, modify, and distribute it. Bounty programs are often used to reward contributors for identifying bugs, adding features, or improving software.";
+  
+  const bountyMessage = "A bounty program is a reward-based initiative where developers or hackers are paid for finding and reporting vulnerabilities or contributing enhancements to a project. It's a way to encourage collaboration and improve the quality of open-source projects.";
+  
+  displayMessage(openSourceMessage, "ai-message");
+  displayMessage(bountyMessage, "ai-message");
+
+  // Extra interactive content on Open Source and Bounty Concepts
+  const openSourcePrompt = "Would you like to learn more about how open-source communities work or explore a specific bounty platform?";
+  const bountyPrompt = "Are you interested in finding open-source projects with bounty programs or setting one up yourself?";
+
+  displayMessage(openSourcePrompt, "ai-message");
+  displayMessage(bountyPrompt, "ai-message");
+
+  aiInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      const userMessage = aiInput.value.trim().toLowerCase();
+      if (userMessage.includes("learn") || userMessage.includes("more")) {
+        displayMessage("Open-source communities thrive on collaboration and transparency. There are platforms like GitHub, GitLab, and Bitbucket where developers can contribute to projects and earn recognition for their work.", "ai-message");
+      } else if (userMessage.includes("platform") || userMessage.includes("bounty")) {
+        displayMessage("Popular bounty platforms include Gitcoin, HackerOne, and Bugcrowd. These platforms host bounties for security vulnerabilities and other project contributions.", "ai-message");
+      } else {
+        displayMessage("If you have more questions about open source or bounty systems, feel free to ask!", "ai-message");
+      }
+      aiInput.value = "";
     }
-  })
-
-  // Initial greeting
-  if (conversationHistory.length === 0) {
-    displayMessage("Hello! How can I assist you with OpenBounty today?", "ai-message")
-  }
-
-  // Add a keyboard shortcut to toggle the AI assistant
-  document.addEventListener("keydown", (e) => {
-    if (e.ctrlKey && e.key === "/") {
-      toggleAIAssistant()
-    }
-  })
-})
-
+  });
+});

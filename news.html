@@ -10,10 +10,12 @@
     <header>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#features">Features</a></li>
-                <li><a href="index.html#bounties">Bounties</a></li>
-                <li><a href="#news">Tech News</a></li>
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="features.html"><i class="fas fa-star"></i> Features</a></li>
+                <li><a href="bounties.html"><i class="fas fa-trophy"></i> Bounties</a></li>
+                <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+                <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
             </ul>
         </nav>
     </header>
@@ -24,7 +26,37 @@
             <div id="news-list">
                 <!-- News items will be dynamically added here -->
             </div>
+            <button id="news-feed-btn" class="btn">Load New News</button>
         </section>
+
+        <section id="open-source" class="fade-in">
+            <h2><i class="fas fa-code-branch"></i> What is Open Source?</h2>
+            <p>Open source software is released with a license that allows anyone to inspect, modify, and distribute the source code. GitHub is the most popular platform where developers from around the world collaborate on projects. Here's how you can contribute:</p>
+            <ul>
+                <li><strong>Fork:</strong> Make a copy of a repository to work on it.</li>
+                <li><strong>Clone:</strong> Download the repository to your local machine for development.</li>
+                <li><strong>Pull Request:</strong> Submit your changes for review and inclusion in the main project.</li>
+            </ul>
+            <button id="open-source-quiz-btn" class="btn">Test Your Open Source Knowledge</button>
+        </section>
+
+        <section id="bounty-system" class="fade-in">
+            <h2><i class="fas fa-trophy"></i> Open Source Bounties</h2>
+            <p>Bounties are rewards offered for completing tasks or fixing bugs in open-source projects. These tasks can range from small bug fixes to large feature additions. Bounties incentivize developers to contribute to open-source projects:</p>
+            <ul>
+                <li><strong>Find Bugs:</strong> Report bugs and earn rewards.</li>
+                <li><strong>Improve Documentation:</strong> Help improve the documentation for others.</li>
+                <li><strong>Build Features:</strong> Develop new features and improve the project.</li>
+            </ul>
+            <button id="bounty-dashboard-btn" class="btn">View Active Bounties</button>
+        </section>
+
+        <section id="interactive-contribution" class="fade-in">
+            <h2>Interactive Open-Source Contribution</h2>
+            <p>Want to make a contribution? Here’s how you can simulate contributing to an open-source project:</p>
+            <button id="contribute-btn" class="btn">Start Contribution</button>
+        </section>
+
     </main>
 
     <footer>
@@ -36,4 +68,3 @@
     <button id="color-theme-toggle">🎨</button>
 </body>
 </html>
-

@@ -5,15 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpenBounty - Active Bounties</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional Styles for New Features */
+        .contribution-card {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .badge {
+            background-color: #ffb400;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        .badge-top-contributor {
+            background-color: #4caf50;
+        }
+
+        .activity-feed {
+            margin-top: 40px;
+        }
+
+        .activity-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .activity-item p {
+            margin: 0;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="features.html">Features</a></li>
-                <li><a href="bounties.html">Bounties</a></li>
-                <li><a href="login.html">Login</a></li>
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="features.html"><i class="fas fa-star"></i> Features</a></li>
+                <li><a href="bounties.html"><i class="fas fa-trophy"></i> Bounties</a></li>
+                <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+                <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
             </ul>
         </nav>
     </header>
@@ -21,7 +65,7 @@
     <main>
         <section id="bounties-hero" class="fade-in">
             <h1>Active Bounties</h1>
-            <p>Find exciting opportunities to contribute and earn rewards</p>
+            <p>Find exciting opportunities to contribute and earn rewards. Engage with open-source projects and be part of the community!</p>
         </section>
 
         <section id="bounty-search" class="fade-in">
@@ -38,17 +82,30 @@
             <!-- Bounties will be dynamically added here -->
         </section>
 
+        <section id="activity-feed" class="fade-in">
+            <h2>Recent Activity</h2>
+            <div id="activity-list">
+                <!-- Activity feed items will be dynamically added here -->
+            </div>
+        </section>
+
         <section id="bounty-stats" class="fade-in">
             <h2>Bounty Statistics</h2>
             <div id="stats-container">
                 <!-- Dynamic stats will be added here using JavaScript -->
             </div>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2025 OpenBounty. All rights reserved.</p>
-    </footer>
+        <section id="learn-more" class="fade-in">
+            <h2>Learn More About Open Source & Bounties</h2>
+            <p>Open-source projects thrive on collaboration. By contributing to these projects, you can not only learn new skills but also earn rewards through bounty programs.</p>
+            <p>Some platforms that host bounties include Gitcoin, Bugcrowd, and HackerOne, where you can contribute to projects or find vulnerabilities and get paid for your efforts.</p>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 OpenBounty. All rights reserved.</p>
+        </footer>
+    </main>
 
     <script src="bounties.js"></script>
     <script src="theme.js"></script>
@@ -68,4 +125,3 @@
     <script src="ai-assistant.js"></script>
 </body>
 </html>
-

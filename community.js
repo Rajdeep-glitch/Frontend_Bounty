@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const recentAchievements = document.getElementById("recent-achievements")
   const eventsCalendar = document.getElementById("events-calendar")
   const forumPreview = document.getElementById("forum-preview")
+  const openSourceProjects = document.getElementById("open-source-projects")
+  const bountyStats = document.getElementById("bounty-stats")
+  const livePoll = document.getElementById("live-poll")
+  const contributionTracker = document.getElementById("contribution-tracker")
 
   // Developer of the Month
   function updateDeveloperOfMonth() {
@@ -96,17 +100,105 @@ document.addEventListener("DOMContentLoaded", () => {
       .join("")
   }
 
+  // Open Source Projects Directory
+  function updateOpenSourceProjects() {
+    const projects = [
+      { name: "EcoTrack", description: "A tool for tracking environmental impact", status: "Active" },
+      { name: "DataViz", description: "A library for creating interactive data visualizations", status: "Active" },
+      { name: "CodeClean", description: "A code refactoring tool for developers", status: "Inactive" },
+    ]
+    openSourceProjects.innerHTML = projects
+      .map(
+        (p) => `
+                <div class="project-item">
+                    <h4>${p.name}</h4>
+                    <p>${p.description}</p>
+                    <span>Status: ${p.status}</span>
+                </div>
+            `,
+      )
+      .join("")
+  }
+
+  // Live Bounty Stats
+  function updateBountyStats() {
+    const bounties = [
+      { name: "Fix database bug", status: "Active", reward: "$50" },
+      { name: "Design UI for mobile app", status: "Active", reward: "$100" },
+      { name: "Implement authentication system", status: "Completed", reward: "$75" },
+    ]
+    bountyStats.innerHTML = bounties
+      .map(
+        (b) => `
+                <div class="bounty-item">
+                    <h4>${b.name}</h4>
+                    <p>Status: ${b.status} | Reward: ${b.reward}</p>
+                </div>
+            `,
+      )
+      .join("")
+  }
+
+  // Live Poll on Bounty Ideas
+  function updateLivePoll() {
+    const pollOptions = [
+      { option: "Improve open-source project documentation", votes: 123 },
+      { option: "Create new developer tools for collaboration", votes: 98 },
+      { option: "Improve onboarding process for new contributors", votes: 65 },
+    ]
+    livePoll.innerHTML = `
+        <h4>What should be the next bounty project?</h4>
+        ${pollOptions
+          .map(
+            (p) => `
+                <div class="poll-option">
+                    <input type="radio" name="poll" value="${p.option}">
+                    <label>${p.option}</label>
+                    <span>${p.votes} votes</span>
+                </div>
+            `,
+          )
+          .join("")}
+        <button id="vote-now" class="btn">Vote Now</button>
+    `
+  }
+
+  // Contribution Tracker (dummy data)
+  function updateContributionTracker() {
+    const contributions = [
+      { project: "EcoTrack", contributions: 15 },
+      { project: "CodeClean", contributions: 5 },
+      { project: "DataViz", contributions: 8 },
+    ]
+    contributionTracker.innerHTML = contributions
+      .map(
+        (c) => `
+                <div class="contribution-item">
+                    <h4>${c.project}</h4>
+                    <p>Contributions: ${c.contributions}</p>
+                </div>
+            `,
+      )
+      .join("")
+  }
+
   // Initial updates
   updateDeveloperOfMonth()
   updateTopContributors()
   updateRecentAchievements()
   updateEventsCalendar()
   updateForumPreview()
+  updateOpenSourceProjects()
+  updateBountyStats()
+  updateLivePoll()
+  updateContributionTracker()
 
   // Periodic updates
   setInterval(updateDeveloperOfMonth, 60000) // Every minute
   setInterval(updateTopContributors, 300000) // Every 5 minutes
   setInterval(updateRecentAchievements, 600000) // Every 10 minutes
+  setInterval(updateBountyStats, 300000) // Every 5 minutes
+  setInterval(updateContributionTracker, 300000) // Every 5 minutes
 
   // Initialize AOS
   AOS.init({
@@ -114,4 +206,3 @@ document.addEventListener("DOMContentLoaded", () => {
     once: true,
   })
 })
-

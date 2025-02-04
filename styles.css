@@ -1,15 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
 :root {
-  --primary-color: #3498db;
-  --secondary-color: #2ecc71;
-  --background-color: #f8f9fa;
+  --primary-color: #ff7f50; /* Coral */
+  --secondary-color: #6a5acd; /* SlateBlue */
+  --background-color: #f0f8ff; /* Alice Blue */
   --text-color: #333333;
-  --header-color: #2c3e50;
+  --header-color: #3b5998; /* Facebook Blue */
   --card-background: #ffffff;
-  --hover-color: #2980b9;
-  --success-color: #27ae60;
+  --hover-color: #ff6347; /* Tomato */
+  --success-color: #32cd32; /* Lime Green */
   --error-color: #e74c3c;
+  --accent-color: #f39c12; /* Golden */
+  --light-accent: #f1c40f; /* Sunflower */
 }
 
 body {
@@ -30,6 +32,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
+  border-bottom: 3px solid var(--accent-color); /* Added a border for accent */
 }
 
 nav ul {
@@ -105,6 +108,7 @@ footer {
   text-align: center;
   padding: 1rem;
   margin-top: 2rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); /* Gradient background */
 }
 
 .btn {
@@ -132,6 +136,7 @@ footer {
   padding: 1.5rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: 100%;
+  border: 2px solid var(--light-accent); /* Added border for a more defined look */
 }
 
 .card:hover {
@@ -466,4 +471,3 @@ footer {
     transform: scale(1);
   }
 }
-
