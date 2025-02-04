@@ -6,9 +6,121 @@
     <title>OpenBounty Features</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --accent: #2FEB99;
+            --bg: #0F172A;
+            --glass: rgba(15, 23, 42, 0.7);
+        }
+
+        body {
+            background: var(--bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+
+        #features-hero {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 0 0 40px 40px;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 1rem 0;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .demo-container {
+            background: var(--glass);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .demo-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .demo-tab {
+            background: var(--glass);
+            border: 1px solid var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .demo-tab.active {
+            background: var(--primary);
+            box-shadow: 0 0 15px rgba(108, 99, 255, 0.4);
+        }
+
+        .feature-highlight {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: var(--glass);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <header class="glass-header">
         <nav>
             <ul>
                 <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
@@ -16,87 +128,163 @@
                 <li><a href="bounties.html"><i class="fas fa-trophy"></i> Bounties</a></li>
                 <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
                 <li><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+                <li><a href="news.html"><i class="fas fa-project-diagram"></i> News</a></li>
                 <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="features-hero" class="fade-in">
-            <h1>OpenBounty Features</h1>
-            <p>Discover the tools and capabilities that make OpenBounty unique</p>
+        <section id="features-hero" class="animate__animated animate__fadeIn">
+            <h1 class="gradient-text">Powering the Future of <span class="animate__pulse">Open Source</span> 🌟</h1>
+            <p>Discover the tools and capabilities that make OpenBounty the ultimate platform for open-source collaboration</p>
         </section>
 
-        <section id="feature-list" class="fade-in">
-            <div class="card-container">
-                <div class="card featured" data-aos="fade-up">
-                    <h3>Project Exploration</h3>
-                    <p>Browse a wide range of open-source projects across various technologies and domains.</p>
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">Active Contributors</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">$12M+</div>
+                <div class="stat-label">in Rewards Distributed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Satisfaction Rate</div>
+            </div>
+        </section>
+
+        <section class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>Smart Project Discovery</h3>
+                <p>AI-powered recommendations based on your skills and interests</p>
+                <ul class="feature-list">
+                    <li>🎯 Personalized matching algorithm</li>
+                    <li>📈 Skill gap analysis</li>
+                    <li>🌐 Multi-chain project support</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Dynamic Bounty System</h3>
+                <p>Fair and transparent reward distribution</p>
+                <div class="feature-highlight">
+                    <div>
+                        <div class="stat-number">$500-$50k</div>
+                        <div class="stat-label">Bounty Range</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">24h</div>
+                        <div class="stat-label">Avg. Payout Time</div>
+                    </div>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="100">
-                    <h3>Bounty System</h3>
-                    <p>Earn rewards for completing tasks and contributing to projects.</p>
-                </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Skill Matching</h3>
-                    <p>Find projects and tasks that match your skills and interests.</p>
-                </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="300">
-                    <h3>Collaboration Tools</h3>
-                    <p>Use integrated tools for code review, version control, and team communication.</p>
-                </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="400">
-                    <h3>Learning Resources</h3>
-                    <p>Access tutorials, documentation, and mentorship opportunities.</p>
-                </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="500">
-                    <h3>Profile Showcase</h3>
-                    <p>Display your contributions, skills, and achievements on your developer profile.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Collaboration Hub</h3>
+                <p>Built-in tools for seamless teamwork</p>
+                <div class="tool-stack">
+                    <div class="tool-item">
+                        <div class="tool-icon">💬</div>
+                        <div class="tool-name">Encrypted Chat</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">📂</div>
+                        <div class="tool-name">File Sharing</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">🔗</div>
+                        <div class="tool-name">Smart Notifications</div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="feature-highlight" class="fade-in">
-            <h2>Featured: Project Exploration</h2>
-            <div id="project-explorer">
-                <!-- Dynamic project explorer will be added here using JavaScript -->
+        <section class="demo-container">
+            <h2 class="gradient-text">Live Feature Demo</h2>
+            <div class="demo-tabs">
+                <button class="demo-tab active" data-tab="bounty-system">💰 Bounty System</button>
+                <button class="demo-tab" data-tab="skill-matching">🎯 Skill Matching</button>
+                <button class="demo-tab" data-tab="collaboration">👥 Collaboration</button>
+            </div>
+            <div class="demo-content">
+                <div id="bounty-system-demo" class="demo-pane active">
+                    <div class="bounty-preview">
+                        <div class="bounty-card">
+                            <div class="bounty-header">
+                                <h4>Implement Web3 Auth</h4>
+                                <div class="bounty-reward">$2,500 + 5 ETH</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%"></div>
+                            </div>
+                            <div class="bounty-meta">
+                                <span>⏳ 12 Days Left</span>
+                                <span>👥 24 Contributors</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="feature-demo" class="fade-in">
-            <h2>Interactive Feature Demo</h2>
-            <div id="demo-container">
-                <div id="demo-tabs">
-                    <button class="demo-tab active" data-tab="bounty-system">Bounty System</button>
-                    <button class="demo-tab" data-tab="skill-matching">Skill Matching</button>
-                    <button class="demo-tab" data-tab="collaboration">Collaboration Tools</button>
+        <section class="feature-card">
+            <h2>🔒 Security First Architecture</h2>
+            <div class="security-features">
+                <div class="security-item">
+                    <div class="security-icon">🛡️</div>
+                    <h4>End-to-End Encryption</h4>
+                    <p>All communications and transactions protected by military-grade encryption</p>
                 </div>
-                <div id="demo-content"></div>
+                <div class="security-item">
+                    <div class="security-icon">🔑</div>
+                    <h4>Multi-Sig Wallets</h4>
+                    <p>Secure fund management through decentralized escrow system</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="feature-card">
+            <h2 class="gradient-text">🚀 Integration Ecosystem</h2>
+            <div class="integration-grid">
+                <img src="github-logo.png" alt="GitHub" class="integration-logo">
+                <img src="gitcoin-logo.png" alt="Gitcoin" class="integration-logo">
+                <img src="metamask-logo.png" alt="MetaMask" class="integration-logo">
+                <img src="polygon-logo.png" alt="Polygon" class="integration-logo">
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 OpenBounty. All rights reserved.</p>
-    </footer>
+    <script>
+        // Add cursor light effect
+        document.body.style.background = `radial-gradient(600px at 50% 50%, rgba(255, 255, 255, 0.1), var(--bg) 80%)`;
+        
+        document.body.addEventListener('mousemove', (e) => {
+            document.body.style.background = `
+                radial-gradient(
+                    600px at ${e.clientX}px ${e.clientY}px,
+                    rgba(255, 255, 255, 0.1),
+                    var(--bg) 80%
+                )
+            `;
+        });
 
-    <button id="color-theme-toggle">🎨</button>
-
-    <div id="ai-assistant" class="minimized">
-        <div id="ai-assistant-header">
-            <h3><i class="fas fa-robot"></i> AI Assistant</h3>
-            <button id="ai-assistant-toggle">↗</button>
-        </div>
-        <div id="ai-assistant-messages"></div>
-        <div id="ai-assistant-input">
-            <input type="text" placeholder="Ask me anything...">
-            <button><i class="fas fa-paper-plane"></i></button>
-        </div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="features.js"></script>
-    <script src="theme.js"></script>
-    <script src="ai-assistant.js"></script>
+        // Demo tab functionality
+        document.querySelectorAll('.demo-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const tabId = tab.dataset.tab;
+                document.querySelectorAll('.demo-pane').forEach(pane => {
+                    pane.classList.remove('active');
+                    if(pane.id === `${tabId}-demo`) pane.classList.add('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>

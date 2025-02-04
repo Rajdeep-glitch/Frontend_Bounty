@@ -6,10 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const aiInput = document.getElementById("ai-input");
   const aiSendButton = document.getElementById("ai-assistant-input").querySelector("button");
 
-  // Initialize GeminiAI
-  const ai = require("./../../BackendProjects/Gemini_Node.js");
-  const aiModel = new ai.GeminiAI();
-
   // Initialize AI assistant state
   let isMinimized = true;
 
@@ -30,15 +26,17 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleAIAssistant();
   });
 
-  async function sendMessage() {
+  function sendMessage() {
     const userMessage = aiInput.value.trim();
     if (userMessage) {
       displayMessage(userMessage, "user-message");
       aiInput.value = "";
-
-      // Get AI response from GeminiAI
-      const aiResponse = await aiModel.getResponse(userMessage);
-      displayMessage(aiResponse, "ai-message");
+      
+      // Simulate AI response
+      setTimeout(() => {
+        const aiResponse = getAIResponse(userMessage);
+        displayMessage(aiResponse, "ai-message");
+      }, 500);
     }
   }
 
@@ -48,6 +46,19 @@ document.addEventListener("DOMContentLoaded", () => {
     messageElement.textContent = message;
     aiMessages.appendChild(messageElement);
     aiMessages.scrollTop = aiMessages.scrollHeight;
+  }
+
+  function getAIResponse(input) {
+    // Simple responses for a normal AI chat
+    const responses = {
+      "hello": "Hi there! How can I assist you today?",
+      "how are you": "I'm just a bot, but I'm here to help!",
+      "what is open source": "Open source means software with publicly available code that anyone can modify and distribute.",
+      "tell me about bounties": "Bounties are rewards offered for completing tasks, usually in software development or security research.",
+      "bye": "Goodbye! Have a great day!"
+    };
+    
+    return responses[input.toLowerCase()] || "I'm here to assist you. Ask me anything!";
   }
 
   aiSendButton.addEventListener("click", sendMessage);
@@ -68,35 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
   aiInput.setAttribute("aria-label", "Type your message");
   aiSendButton.setAttribute("aria-label", "Send message");
 
-  // Initial greeting with Open Source and Bounty Concepts
-  displayMessage("Hello! How can I assist you with Open Source or Bounty projects today?", "ai-message");
-
-  // Content related to open-source and bounty systems
-  const openSourceMessage = "Open source is a practice where developers share the source code of a project publicly, allowing anyone to view, modify, and distribute it. Bounty programs are often used to reward contributors for identifying bugs, adding features, or improving software.";
-  
-  const bountyMessage = "A bounty program is a reward-based initiative where developers or hackers are paid for finding and reporting vulnerabilities or contributing enhancements to a project. It's a way to encourage collaboration and improve the quality of open-source projects.";
-  
-  displayMessage(openSourceMessage, "ai-message");
-  displayMessage(bountyMessage, "ai-message");
-
-  // Extra interactive content on Open Source and Bounty Concepts
-  const openSourcePrompt = "Would you like to learn more about how open-source communities work or explore a specific bounty platform?";
-  const bountyPrompt = "Are you interested in finding open-source projects with bounty programs or setting one up yourself?";
-
-  displayMessage(openSourcePrompt, "ai-message");
-  displayMessage(bountyPrompt, "ai-message");
-
-  aiInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      const userMessage = aiInput.value.trim().toLowerCase();
-      if (userMessage.includes("learn") || userMessage.includes("more")) {
-        displayMessage("Open-source communities thrive on collaboration and transparency. There are platforms like GitHub, GitLab, and Bitbucket where developers can contribute to projects and earn recognition for their work.", "ai-message");
-      } else if (userMessage.includes("platform") || userMessage.includes("bounty")) {
-        displayMessage("Popular bounty platforms include Gitcoin, HackerOne, and Bugcrowd. These platforms host bounties for security vulnerabilities and other project contributions.", "ai-message");
-      } else {
-        displayMessage("If you have more questions about open source or bounty systems, feel free to ask!", "ai-message");
-      }
-      aiInput.value = "";
-    }
-  });
+  // Initial greeting
+  displayMessage("Hello! How can I assist you today?", "ai-message");
 });

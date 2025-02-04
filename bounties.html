@@ -4,52 +4,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpenBounty - Active Bounties</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Additional Styles for New Features */
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --accent: #2FEB99;
+            --bg: #0F172A;
+            --glass: rgba(15, 23, 42, 0.7);
+        }
+
+        body {
+            background: var(--bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+
         .contribution-card {
-            background-color: #f9f9f9;
-            padding: 15px;
-            margin: 10px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contribution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 32px rgba(108, 99, 255, 0.2);
         }
 
         .badge {
-            background-color: #ffb400;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
         }
 
-        .badge-top-contributor {
-            background-color: #4caf50;
+        #bounty-search input {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 12px;
+            border: 2px solid var(--primary);
+            background: var(--glass);
+            color: white;
+            font-size: 1.1rem;
         }
 
-        .activity-feed {
-            margin-top: 40px;
+        .filter-btn {
+            background: var(--glass);
+            border: 1px solid var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            box-shadow: 0 0 15px rgba(108, 99, 255, 0.4);
+        }
+
+        .bounty-stats-card {
+            background: var(--glass);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.5s ease;
         }
 
         .activity-item {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: var(--glass);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+            animation: slideIn 0.5s ease;
         }
 
-        .activity-item p {
-            margin: 0;
-            font-size: 14px;
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        #ai-assistant {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 350px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transform: scale(0.95);
+            transition: all 0.3s ease;
+        }
+
+        #ai-assistant:hover {
+            transform: scale(1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bounty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 0;
         }
     </style>
 </head>
 <body>
-    <header>
+    <header class="glass-header">
         <nav>
             <ul>
                 <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
@@ -57,71 +144,453 @@
                 <li><a href="bounties.html"><i class="fas fa-trophy"></i> Bounties</a></li>
                 <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
                 <li><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+                <li><a href="news.html"><i class="fas fa-project-diagram"></i> News</a></li>
                 <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="bounties-hero" class="fade-in">
-            <h1>Active Bounties</h1>
-            <p>Find exciting opportunities to contribute and earn rewards. Engage with open-source projects and be part of the community!</p>
-        </section>
-
-        <section id="bounty-search" class="fade-in">
-            <input type="text" id="search-input" placeholder="Search bounties...">
-            <div id="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="easy">Easy</button>
-                <button class="filter-btn" data-filter="medium">Medium</button>
-                <button class="filter-btn" data-filter="hard">Hard</button>
+        <section id="bounties-hero" class="animate__animated animate__fadeIn">
+            <h1 class="gradient-text">Discover <span class="animate__heartBeat">🔥</span> Hot Bounties</h1>
+            <p>Contribute to cutting-edge projects and earn crypto rewards</p>
+            <div class="animated-search">
+                <input type="text" placeholder="🔍 Search bounties...">
             </div>
         </section>
 
-        <section id="bounty-list" class="fade-in">
-            <!-- Bounties will be dynamically added here -->
+        <section class="bounty-grid">
+            <!-- Interactive Bounty Cards -->
+            <div class="contribution-card">
+                <div class="badge">💰 $500+</div>
+                <h3>Implement Web3 Authentication</h3>
+                <p class="text-muted">Ethereum Foundation</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%"></div>
+                </div>
+                <div class="card-footer">
+                    <button class="cta-button">Claim Bounty</button>
+                    <div class="participants">
+                        👥 24 contributors
+                    </div>
+                </div>
+            </div>
+
+            <!-- More bounty cards... -->
         </section>
 
-        <section id="activity-feed" class="fade-in">
-            <h2>Recent Activity</h2>
-            <div id="activity-list">
-                <!-- Activity feed items will be dynamically added here -->
+        <section class="live-activity">
+            <h2>🚀 Live Activity Feed</h2>
+            <div class="activity-item">
+                <div class="user-badge">
+                    <img src="avatar.png" alt="user" class="avatar">
+                    <span>@satoshi</span>
+                </div>
+                <p>Just claimed the <strong>WalletConnect Integration</strong> bounty!</p>
+                <span class="time-ago">2m ago</span>
+            </div>
+            <!-- More activity items... -->
+        </section>
+
+        <section class="stats-carousel">
+            <div class="bounty-stats-card">
+                <h3>🚀 Total Bounties</h3>
+                <div class="stat-number">1,234</div>
+                <div class="sparkline-graph"></div>
+            </div>
+            <div class="bounty-stats-card">
+                <h3>💸 Total Rewards</h3>
+                <div class="stat-number">$542,390</div>
+                <div class="sparkline-graph"></div>
             </div>
         </section>
+        <!-- Add this within the <main> section, after the hero section -->
 
-        <section id="bounty-stats" class="fade-in">
-            <h2>Bounty Statistics</h2>
-            <div id="stats-container">
-                <!-- Dynamic stats will be added here using JavaScript -->
+<section class="bounty-grid">
+    <!-- Sample Bounty Card 1 -->
+    <div class="contribution-card">
+        <div class="badge">🔥 Hot Opportunity</div>
+        <div class="flex justify-between items-start">
+            <div>
+                <h3>Decentralized Identity Solution</h3>
+                <p class="project-meta">
+                    <span class="project-org">🌐 Ethereum Foundation</span>
+                    <span class="project-deadline">⏳ 12 days remaining</span>
+                </p>
             </div>
-        </section>
-
-        <section id="learn-more" class="fade-in">
-            <h2>Learn More About Open Source & Bounties</h2>
-            <p>Open-source projects thrive on collaboration. By contributing to these projects, you can not only learn new skills but also earn rewards through bounty programs.</p>
-            <p>Some platforms that host bounties include Gitcoin, Bugcrowd, and HackerOne, where you can contribute to projects or find vulnerabilities and get paid for your efforts.</p>
-        </section>
-
-        <footer>
-            <p>&copy; 2025 OpenBounty. All rights reserved.</p>
-        </footer>
-    </main>
-
-    <script src="bounties.js"></script>
-    <script src="theme.js"></script>
-    <button id="color-theme-toggle">🎨</button>
-    <div id="ai-assistant" class="minimized">
-        <div id="ai-assistant-header">
-            <h3><i class="fas fa-robot"></i> AI Assistant</h3>
-            <button id="ai-assistant-toggle">↗</button>
+            <div class="reward-tag">
+                <div class="reward-amount">$2,500</div>
+                <div class="reward-crypto">+ 5 ETH</div>
+            </div>
         </div>
-        <div id="ai-assistant-messages"></div>
-        <div id="ai-assistant-input">
-            <input type="text" placeholder="Ask me anything...">
-            <button><i class="fas fa-paper-plane"></i></button>
+        
+        <p class="bounty-description">
+            Develop a decentralized identity verification module using Zero-Knowledge Proofs.
+            Integrate with existing Ethereum smart contracts and provide comprehensive documentation.
+        </p>
+
+        <div class="tech-stack-tags">
+            <span class="tech-tag">🔗 Solidity</span>
+            <span class="tech-tag">📦 zk-SNARKs</span>
+            <span class="tech-tag">🛠️ Hardhat</span>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-labels">
+                <span>🔄 65% Completed</span>
+                <span>👥 42 Contributors</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 65%"></div>
+            </div>
+        </div>
+
+        <div class="card-actions">
+            <button class="cta-button">📝 View Details</button>
+            <div class="social-proof">
+                <div class="avatar-stack">
+                    <img src="avatar1.png" alt="Contributor" class="avatar">
+                    <img src="avatar2.png" alt="Contributor" class="avatar">
+                    <img src="avatar3.png" alt="Contributor" class="avatar">
+                </div>
+                <span>+39 active contributors</span>
+            </div>
         </div>
     </div>
 
-    <script src="ai-assistant.js"></script>
+    <!-- Sample Bounty Card 2 -->
+    <div class="contribution-card">
+        <div class="badge badge-new">🎯 New Bounty</div>
+        <h3>Cross-Chain NFT Bridge</h3>
+        <p class="project-meta">
+            <span class="project-org">🦄 Polygon Labs</span>
+            <span class="project-deadline">⏳ 30 days remaining</span>
+        </p>
+        
+        <div class="complexity-rating">
+            <div class="rating-stars">
+                ⭐⭐⭐⭐☆ (4/5 Difficulty)
+            </div>
+            <div class="reward-tag">
+                <div class="reward-amount">$5,000</div>
+                <div class="reward-crypto">+ 250 MATIC</div>
+            </div>
+        </div>
+
+        <p class="bounty-description">
+            Create a secure bridge for NFT transfers between Ethereum and Polygon networks.
+            Must include automated testing suite and audit-ready codebase.
+        </p>
+
+        <div class="requirements-list">
+            <h4>📋 Requirements:</h4>
+            <ul>
+                <li>ERC-721 and ERC-1155 support</li>
+                <li>Gas optimization analysis</li>
+                <li>Comprehensive test coverage (>90%)</li>
+            </ul>
+        </div>
+
+        <div class="mentor-section">
+            <h4>👨🏫 Bounty Mentor:</h4>
+            <div class="mentor-profile">
+                <img src="mentor-avatar.png" class="avatar" alt="Mentor">
+                <div>
+                    <p>Vitalik Buterin</p>
+                    <p class="text-muted">Ethereum Core Developer</p>
+                </div>
+                <button class="mentor-chat">💬 Ask Question</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Expanded Learning Section -->
+<section class="knowledge-base">
+    <h2 class="gradient-text">📚 Bounty Hunter's Handbook</h2>
+    
+    <div class="info-cards">
+        <div class="info-card">
+            <div class="card-icon">💡</div>
+            <h3>How Bounties Work</h3>
+            <p>
+                OpenBounty connects developers with meaningful projects through incentivized tasks.
+                <br><br>
+                1. Find a bounty matching your skills<br>
+                2. Submit proposal for approval<br>
+                3. Work on the task<br>
+                4. Submit for review<br>
+                5. Get paid upon acceptance!
+            </p>
+        </div>
+
+        <div class="info-card">
+            <div class="card-icon">🚀</div>
+            <h3>Why Participate?</h3>
+            <ul class="benefits-list">
+                <li>💰 Earn cryptocurrency rewards</li>
+                <li>📈 Build your Web3 portfolio</li>
+                <li>🤝 Network with top projects</li>
+                <li>🎓 Learn cutting-edge technologies</li>
+                <li>🌍 Contribute to open-source ecosystem</li>
+            </ul>
+        </div>
+
+        <div class="info-card">
+            <div class="card-icon">🎮</div>
+            <h3>Getting Started</h3>
+            <div class="onboarding-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <p>Complete your developer profile</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <p>Take skills assessment tests</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <p>Browse recommended bounties</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <p>Start contributing!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Success Stories Section -->
+<section class="success-stories">
+    <h2>🏆 Featured Success Stories</h2>
+    
+    <div class="story-carousel">
+        <div class="story-card">
+            <div class="story-header">
+                <img src="success-avatar1.png" class="avatar" alt="Success Story">
+                <div>
+                    <h3>Sarah M.</h3>
+                    <p>Former Frontend Developer → Fullstack Web3 Engineer</p>
+                </div>
+            </div>
+            <div class="story-content">
+                <p>
+                    "Through OpenBounty, I transitioned from traditional web development to Web3.
+                    Completed 12 bounties, earned over $25k in crypto, and landed a full-time position
+                    at a leading DeFi project!"
+                </p>
+                <div class="story-stats">
+                    <div class="stat">
+                        <div class="stat-number">$27,450</div>
+                        <div class="stat-label">Total Earned</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">48</div>
+                        <div class="stat-label">Bounties Completed</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional story cards... -->
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+    <h2>❓ Frequently Asked Questions</h2>
+    
+    <div class="faq-grid">
+        <div class="faq-card">
+            <div class="faq-question">🤑 How do I get paid?</div>
+            <div class="faq-answer">
+                Payments are made in cryptocurrency (ETH, MATIC, etc.) through our secure escrow system.
+                We support payments via MetaMask, Coinbase Wallet, and other Web3 wallets.
+            </div>
+        </div>
+
+        <div class="faq-card">
+            <div class="faq-question">👩💻 Who can participate?</div>
+            <div class="faq-answer">
+                Anyone with technical skills! We have bounties for developers, designers, writers,
+                and community managers. Some bounties may require skill verification.
+            </div>
+        </div>
+
+        <div class="faq-card">
+            <div class="faq-question">⏱️ Time commitment?</div>
+            <div class="faq-answer">
+                Bounties range from quick 2-hour tasks to multi-week projects. Each bounty clearly
+                states estimated time requirements and deadlines.
+            </div>
+        </div>
+
+        <div class="faq-card">
+            <div class="faq-question">🔒 Project quality?</div>
+            <div class="faq-answer">
+                All projects are vetted by our team. We only host bounties from reputable organizations
+                with clear project goals and adequate funding.
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Additional Styles */
+    .project-meta {
+        display: flex;
+        gap: 1rem;
+        color: #94a3b8;
+        margin: 0.5rem 0;
+    }
+
+    .tech-stack-tags {
+        display: flex;
+        gap: 0.5rem;
+        margin: 1rem 0;
+    }
+
+    .tech-tag {
+        background: rgba(108, 99, 255, 0.1);
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        border: 1px solid var(--primary);
+    }
+
+    .reward-tag {
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .bounty-description {
+        margin: 1rem 0;
+        line-height: 1.6;
+        color: #cbd5e1;
+    }
+
+    .info-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .info-card {
+        background: var(--glass);
+        padding: 2rem;
+        border-radius: 16px;
+        transition: transform 0.3s ease;
+    }
+
+    .info-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .benefits-list li {
+        margin: 0.8rem 0;
+        padding-left: 1.5rem;
+        position: relative;
+    }
+
+    .benefits-list li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+    }
+
+    .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .faq-card {
+        background: var(--glass);
+        padding: 1.5rem;
+        border-radius: 12px;
+        border: 1px solid rgba(108, 99, 255, 0.3);
+    }
+
+    .faq-question {
+        font-weight: 600;
+        margin-bottom: 0.8rem;
+    }
+
+    .story-card {
+        background: var(--glass);
+        padding: 2rem;
+        border-radius: 16px;
+        margin: 1rem 0;
+    }
+
+    .story-stats {
+        display: flex;
+        gap: 2rem;
+        margin-top: 1.5rem;
+    }
+
+    .stat-number {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: var(--accent);
+    }
+</style>
+
+        <div class="floating-cta">
+            <button class="cta-button pulse">
+                🚀 Post a Bounty
+            </button>
+        </div>
+    </main>
+
+    <script>
+        // Interactive hover effects
+        document.querySelectorAll('.contribution-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+            });
+        });
+
+        // Real-time updates
+        const eventSource = new EventSource('/updates');
+        eventSource.onmessage = (e) => {
+            const activity = JSON.parse(e.data);
+            const activityFeed = document.querySelector('.live-activity');
+            const newItem = createActivityItem(activity);
+            activityFeed.prepend(newItem);
+        };
+
+        // Dynamic filter handling
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                filterBounties(btn.dataset.filter);
+            });
+        });
+
+        // Animated gradient background
+        document.body.addEventListener('mousemove', (e) => {
+            document.body.style.background = `
+                radial-gradient(at ${e.clientX}px ${e.clientY}px, 
+                rgba(108, 99, 255, 0.2) 0%, 
+                rgba(15, 23, 42, 1) 70%)
+            `;
+        });
+    </script>
 </body>
 </html>

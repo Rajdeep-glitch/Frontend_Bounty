@@ -3,11 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebGrid - Login</title>
+    <title>OpenBounty - Join the Revolution</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --accent: #2FEB99;
+            --bg: #0F172A;
+            --glass: rgba(15, 23, 42, 0.7);
+        }
+
+        body {
+            background: var(--bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .auth-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 500px;
+            transition: transform 0.3s ease;
+        }
+
+        .auth-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px solid var(--primary);
+            background: var(--glass);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(46, 235, 153, 0.3);
+        }
+
+        .oauth-buttons {
+            display: grid;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .oauth-btn {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            background: var(--glass);
+            border: 1px solid var(--primary);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .oauth-btn:hover {
+            background: var(--primary);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .concept-card {
+            background: var(--glass);
+            padding: 2rem;
+            border-radius: 16px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .quiz-container {
+            background: var(--glass);
+            padding: 2rem;
+            border-radius: 16px;
+            margin: 2rem 0;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: var(--glass);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <header class="glass-header">
         <nav>
             <ul>
                 <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
@@ -15,114 +133,171 @@
                 <li><a href="bounties.html"><i class="fas fa-trophy"></i> Bounties</a></li>
                 <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
                 <li><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+                <li><a href="news.html"><i class="fas fa-project-diagram"></i> News</a></li>
                 <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="login-section" class="fade-in">
-            <h1>Login to OpenBounty</h1>
-            <div class="card">
+        <section class="auth-card">
+            <div id="login-section">
+                <h1 class="gradient-text">Welcome Back! 👋</h1>
+                <p class="text-center">Continue your open-source journey</p>
+                
+                <div class="oauth-buttons">
+                    <button class="oauth-btn">
+                        <i class="fab fa-github"></i>
+                        Continue with GitHub
+                    </button>
+                    <button class="oauth-btn">
+                        <i class="fab fa-google"></i>
+                        Continue with Google
+                    </button>
+                    <button class="oauth-btn">
+                        <i class="fas fa-wallet"></i>
+                        Connect Wallet
+                    </button>
+                </div>
+
+                <div class="divider">or</div>
+
                 <form id="login-form">
                     <div class="form-group">
-                        <label for="username">Username or Email</label>
-                        <input type="text" id="username" name="username" required>
+                        <input type="email" placeholder="Email Address" required>
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
+                        <input type="password" placeholder="Password" required>
                     </div>
-                    <button type="submit" class="btn">Login</button>
+                    <button type="submit" class="cta-button">Sign In</button>
                 </form>
-                <p>Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
-            </div>
-        </section>
 
-        <section id="signup-section" class="fade-in" style="display: none;">
-            <h1>Sign Up for OpenBounty</h1>
-            <div class="card">
+                <p class="text-center">New here? <a href="#" id="show-signup" class="gradient-text">Create Account</a></p>
+            </div>
+
+            <div id="signup-section" style="display: none;">
+                <h1 class="gradient-text">Join the Revolution 🚀</h1>
+                
                 <form id="signup-form">
                     <div class="form-group">
-                        <label for="signup-username">Username</label>
-                        <input type="text" id="signup-username" name="signup-username" required>
+                        <input type="text" placeholder="Username" required>
                     </div>
                     <div class="form-group">
-                        <label for="signup-email">Email</label>
-                        <input type="email" id="signup-email" name="signup-email" required>
+                        <input type="email" placeholder="Email Address" required>
                     </div>
                     <div class="form-group">
-                        <label for="signup-password">Password</label>
-                        <input type="password" id="signup-password" name="signup-password" required>
+                        <input type="password" placeholder="Password" required>
                     </div>
                     <div class="form-group">
-                        <label for="signup-confirm-password">Confirm Password</label>
-                        <input type="password" id="signup-confirm-password" name="signup-confirm-password" required>
+                        <input type="password" placeholder="Confirm Password" required>
                     </div>
-                    <button type="submit" class="btn">Sign Up</button>
+                    <button type="submit" class="cta-button">Get Started</button>
                 </form>
-                <p>Already have an account? <a href="#" id="show-login">Login</a></p>
+
+                <p class="text-center">Already have an account? <a href="#" id="show-login" class="gradient-text">Sign In</a></p>
             </div>
         </section>
 
-        <!-- Open Source and Bounty Concepts -->
-        <section id="open-source-concept" class="fade-in">
-            <h2><i class="fas fa-code-branch"></i> Open Source Concept</h2>
-            <p>Open source development is the practice of making the source code of software freely available to anyone, allowing them to view, modify, and distribute the code. This fosters collaboration, innovation, and the creation of new features by a community of developers.</p>
-            
-            <h3>Why Open Source?</h3>
-            <ul>
-                <li><strong>Collaboration:</strong> Developers from around the world can contribute and improve the software.</li>
-                <li><strong>Transparency:</strong> Anyone can inspect the code to ensure there are no hidden vulnerabilities.</li>
-                <li><strong>Community-Driven:</strong> Open source projects often thrive because of the community that supports them.</li>
-                <li><strong>Freedom:</strong> Users and developers can customize the software to fit their needs.</li>
-            </ul>
-            <button id="explore-open-source" class="btn">Explore Open Source Projects</button>
-            <div id="open-source-tooltip" class="tooltip" style="display: none;">
-                <p>Open Source projects encourage collaboration. Fork a project to contribute to its development.</p>
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">Developers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">$12M+</div>
+                <div class="stat-label">in Rewards</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15K+</div>
+                <div class="stat-label">Projects</div>
             </div>
         </section>
 
-        <section id="bounty-concept" class="fade-in">
-            <h2><i class="fas fa-trophy"></i> Bounty System Concept</h2>
-            <p>The bounty system enables individuals or organizations to offer rewards for solving specific problems or tasks within open-source projects. It’s an effective way to encourage contribution and maintain continuous project development.</p>
-            
-            <h3>How the Bounty System Works</h3>
-            <ul>
-                <li><strong>Task Creation:</strong> A task or issue is posted in the repository, with details of what needs to be done.</li>
-                <li><strong>Bounty Offer:</strong> A bounty (a monetary or other reward) is attached to the task to incentivize contributors.</li>
-                <li><strong>Contribution:</strong> Developers submit a solution or improvement for the task posted.</li>
-                <li><strong>Reward Allocation:</strong> If the solution meets the requirements, the reward is given to the contributor.</li>
-            </ul>
-            <button id="explore-bounties" class="btn">Explore Available Bounties</button>
+        <section class="concept-grid">
+            <div class="concept-card">
+                <h3 class="gradient-text"><i class="fas fa-code-branch"></i> Open Source Philosophy</h3>
+                <ul class="benefits-list">
+                    <li>🌍 Global collaboration</li>
+                    <li>🔓 Transparent codebase</li>
+                    <li>🚀 Rapid innovation</li>
+                    <li>💸 Sustainable funding</li>
+                </ul>
+            </div>
+
+            <div class="concept-card">
+                <h3 class="gradient-text"><i class="fas fa-trophy"></i> Bounty System</h3>
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <p>Find matching bounties</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <p>Submit your contribution</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <p>Get reviewed & paid</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section id="interactive-quiz" class="fade-in">
-            <h3>Interactive Quiz: Test Your Open Source Knowledge!</h3>
-            <button id="quiz-btn" class="btn">Start Quiz</button>
+        <section class="quiz-container">
+            <h2 class="gradient-text">Web3 Knowledge Challenge 🧠</h2>
+            <div id="quiz-progress"></div>
+            <div id="quiz-question">
+                <p>What's the most secure way to store digital assets?</p>
+                <div class="quiz-options">
+                    <button class="quiz-option">Hardware Wallet</button>
+                    <button class="quiz-option">Exchange Account</button>
+                    <button class="quiz-option">Paper Wallet</button>
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 OpenBounty. All rights reserved.</p>
-    </footer>
+    <script>
+        // Cursor light effect
+        document.body.style.background = `radial-gradient(600px at 50% 50%, rgba(255, 255, 255, 0.1), var(--bg) 80%)`;
+        
+        document.body.addEventListener('mousemove', (e) => {
+            document.body.style.background = `
+                radial-gradient(
+                    600px at ${e.clientX}px ${e.clientY}px,
+                    rgba(255, 255, 255, 0.1),
+                    var(--bg) 80%
+                )
+            `;
+        });
 
-    <script src="login.js"></script>
-    <script src="theme.js"></script>
-    <button id="color-theme-toggle">🎨</button>
+        // Form toggle functionality
+        const showSignup = document.getElementById('show-signup');
+        const showLogin = document.getElementById('show-login');
+        
+        showSignup.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('signup-section').style.display = 'block';
+        });
 
-    <div id="ai-assistant" class="minimized">
-        <div id="ai-assistant-header">
-            <h3><i class="fas fa-robot"></i> AI Assistant</h3>
-            <button id="ai-assistant-toggle">↗</button>
-        </div>
-        <div id="ai-assistant-messages"></div>
-        <div id="ai-assistant-input">
-            <input type="text" placeholder="Ask me anything...">
-            <button><i class="fas fa-paper-plane"></i></button>
-        </div>
-    </div>
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('signup-section').style.display = 'none';
+            document.getElementById('login-section').style.display = 'block';
+        });
 
-    <script src="ai-assistant.js"></script>
+        // Quiz functionality
+        const quizOptions = document.querySelectorAll('.quiz-option');
+        quizOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                quizOptions.forEach(o => o.classList.remove('selected'));
+                option.classList.add('selected');
+                option.style.backgroundColor = option.textContent === 'Hardware Wallet' 
+                    ? 'var(--accent)' 
+                    : 'var(--secondary)';
+            });
+        });
+    </script>
 </body>
 </html>

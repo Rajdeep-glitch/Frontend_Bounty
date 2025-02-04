@@ -3,11 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech News - OpenBounty</title>
+    <title>Web3 Pulse - OpenBounty</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --accent: #2FEB99;
+            --bg: #0F172A;
+            --glass: rgba(15, 23, 42, 0.7);
+        }
+
+        body {
+            background: var(--bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .news-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .news-category {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .live-ticker {
+            background: var(--primary);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contribution-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .flow-step {
+            background: var(--glass);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            border-left: 4px solid var(--accent);
+        }
+
+        .code-snippet {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: monospace;
+            margin: 1rem 0;
+        }
+
+        .quiz-container {
+            background: var(--glass);
+            padding: 2rem;
+            border-radius: 16px;
+            margin: 2rem 0;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <header class="glass-header">
         <nav>
             <ul>
                 <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
@@ -15,56 +105,139 @@
                 <li><a href="bounties.html"><i class="fas fa-trophy"></i> Bounties</a></li>
                 <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
                 <li><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+                <li><a href="news.html"><i class="fas fa-project-diagram"></i> News</a></li>
                 <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="news">
-            <h1>Latest Tech News</h1>
-            <div id="news-list">
-                <!-- News items will be dynamically added here -->
+        <section id="news-hero">
+            <h1 class="gradient-text">Web3 Pulse 📡</h1>
+            <div class="live-ticker">
+                <span class="blink">🔴 LIVE</span>
+                <marquee id="news-ticker">
+                    • Ethereum Merge completes successfully • Uniswap v4 development begins • 
+                    Polygon announces zkEVM mainnet • OpenBounty distributes $1M+ in September •
+                </marquee>
             </div>
-            <button id="news-feed-btn" class="btn">Load New News</button>
         </section>
 
-        <section id="open-source" class="fade-in">
-            <h2><i class="fas fa-code-branch"></i> What is Open Source?</h2>
-            <p>Open source software is released with a license that allows anyone to inspect, modify, and distribute the source code. GitHub is the most popular platform where developers from around the world collaborate on projects. Here's how you can contribute:</p>
-            <ul>
-                <li><strong>Fork:</strong> Make a copy of a repository to work on it.</li>
-                <li><strong>Clone:</strong> Download the repository to your local machine for development.</li>
-                <li><strong>Pull Request:</strong> Submit your changes for review and inclusion in the main project.</li>
-            </ul>
-            <button id="open-source-quiz-btn" class="btn">Test Your Open Source Knowledge</button>
+        <section class="news-grid">
+            <div class="news-card">
+                <div class="news-category">AI & Blockchain</div>
+                <h3>Decentralized AI Marketplaces Reach $2B Valuation</h3>
+                <p class="news-excerpt">New protocols enabling AI model trading on blockchain see explosive growth...</p>
+                <div class="news-meta">
+                    <span class="tag">🤖 AI</span>
+                    <span class="tag">🔗 DeFi</span>
+                    <span class="time">3h ago</span>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div class="news-category">Security</div>
+                <h3>Zero-Day Exploit Patched in Ethereum Clients</h3>
+                <p class="news-excerpt">Core developers release critical update for Geth and Erigon clients...</p>
+                <div class="news-meta">
+                    <span class="tag">🛡️ Security</span>
+                    <span class="tag">⛓️ Ethereum</span>
+                    <span class="time">6h ago</span>
+                </div>
+            </div>
         </section>
 
-        <section id="bounty-system" class="fade-in">
-            <h2><i class="fas fa-trophy"></i> Open Source Bounties</h2>
-            <p>Bounties are rewards offered for completing tasks or fixing bugs in open-source projects. These tasks can range from small bug fixes to large feature additions. Bounties incentivize developers to contribute to open-source projects:</p>
-            <ul>
-                <li><strong>Find Bugs:</strong> Report bugs and earn rewards.</li>
-                <li><strong>Improve Documentation:</strong> Help improve the documentation for others.</li>
-                <li><strong>Build Features:</strong> Develop new features and improve the project.</li>
-            </ul>
-            <button id="bounty-dashboard-btn" class="btn">View Active Bounties</button>
+        <section class="news-card">
+            <h2 class="gradient-text">Open Source Evolution</h2>
+            <div class="contribution-flow">
+                <div class="flow-step">
+                    <div class="step-icon">⎇</div>
+                    <h4>Fork Repository</h4>
+                    <p>Create your copy of the project</p>
+                    <div class="code-snippet">git fork &lt;repository&gt;</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-icon">↓</div>
+                    <h4>Clone Locally</h4>
+                    <p>Get the code on your machine</p>
+                    <div class="code-snippet">git clone &lt;your-fork&gt;</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-icon">✍️</div>
+                    <h4>Make Changes</h4>
+                    <p>Implement improvements</p>
+                    <div class="code-snippet">git commit -m "feat: new functionality"</div>
+                </div>
+            </div>
         </section>
 
-        <section id="interactive-contribution" class="fade-in">
-            <h2>Interactive Open-Source Contribution</h2>
-            <p>Want to make a contribution? Here’s how you can simulate contributing to an open-source project:</p>
-            <button id="contribute-btn" class="btn">Start Contribution</button>
+        <section class="news-card">
+            <h2 class="gradient-text">Live Bounty Board</h2>
+            <div class="bounty-grid">
+                <div class="bounty-card">
+                    <div class="bounty-header">
+                        <h4>Implement zk-SNARKs in Tornado Cash</h4>
+                        <div class="bounty-reward">$25,000 + 50 ETH</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 45%"></div>
+                    </div>
+                    <div class="bounty-meta">
+                        <span>⏳ 7 Days Left</span>
+                        <span>👥 15 Contributors</span>
+                    </div>
+                </div>
+            </div>
         </section>
 
+        <section class="quiz-container">
+            <h2 class="gradient-text">Web3 Knowledge Challenge 🧠</h2>
+            <div class="quiz-question">
+                <p>What's the most secure method to store private keys?</p>
+                <div class="quiz-options">
+                    <button class="quiz-option">Hardware Wallet</button>
+                    <button class="quiz-option">Cloud Storage</button>
+                    <button class="quiz-option">Paper Wallet</button>
+                </div>
+            </div>
+            <div class="quiz-feedback"></div>
+        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 OpenBounty. All rights reserved.</p>
-    </footer>
+    <script>
+        // Cursor light effect
+        document.body.style.background = `radial-gradient(600px at 50% 50%, rgba(255, 255, 255, 0.1), var(--bg) 80%)`;
+        
+        document.body.addEventListener('mousemove', (e) => {
+            document.body.style.background = `
+                radial-gradient(
+                    600px at ${e.clientX}px ${e.clientY}px,
+                    rgba(255, 255, 255, 0.1),
+                    var(--bg) 80%
+                )
+            `;
+        });
 
-    <script src="news-script.js"></script>
-    <script src="theme.js"></script>
-    <button id="color-theme-toggle">🎨</button>
+        // Quiz functionality
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const correct = option.textContent === 'Hardware Wallet';
+                option.style.backgroundColor = correct ? 'var(--accent)' : 'var(--secondary)';
+                document.querySelector('.quiz-feedback').textContent = 
+                    correct ? '🎉 Correct! Hardware wallets provide air-gapped security.' :
+                    '❌ Cloud storage is vulnerable to hacking attempts.';
+            });
+        });
+
+        // Live news updates
+        const newsTicker = document.getElementById('news-ticker');
+        setInterval(() => {
+            fetch('/latest-news')
+                .then(response => response.json())
+                .then(data => {
+                    newsTicker.innerHTML = data.items.map(item => `• ${item.title}`).join(' • ');
+                });
+        }, 60000);
+    </script>
 </body>
 </html>

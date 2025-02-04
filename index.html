@@ -3,13 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web - Empowering Open Source Development</title>
+    <title>OpenBounty - Empowering Open Source Development</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <script src="ai-assistant.js"></script>
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --accent: #2FEB99;
+            --bg: #0F172A;
+            --glass: rgba(15, 23, 42, 0.7);
+        }
+
+        body {
+            background: var(--bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+
+        #hero {
+            text-align: center;
+            padding: 8rem 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 0 0 40px 40px;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: transform 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .benefit-card {
+            background: var(--glass);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .activity-item {
+            background: var(--glass);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: var(--glass);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+    </style>
 </head>
 <body>
-    <header id="main-header">
+    <header class="glass-header">
         <nav>
             <ul>
                 <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
@@ -17,75 +109,136 @@
                 <li><a href="bounties.html"><i class="fas fa-trophy"></i> Bounties</a></li>
                 <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
                 <li><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+                <li><a href="news.html"><i class="fas fa-project-diagram"></i> News</a></li>
                 <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="hero" class="fade-in">
-            <h1>Welcome to OpenBounty</h1>
-            <p>Empowering Open Source Development</p>
-            <a href="#get-started" class="btn pulse"><i class="fas fa-rocket"></i> Get Started</a>
+        <section id="hero" class="animate__animated animate__fadeIn">
+            <h1 class="gradient-text">Build the Future of <span class="animate__pulse">Open Source</span> 🌍</h1>
+            <p>Join 50,000+ developers shaping the next generation of decentralized software</p>
+            <div class="avatar-grid">
+                <img src="avatar1.png" class="avatar" alt="Contributor">
+                <img src="avatar2.png" class="avatar" alt="Contributor">
+                <img src="avatar3.png" class="avatar" alt="Contributor">
+                <div class="more-contributors">+47,987</div>
+            </div>
+            <a href="#get-started" class="cta-button pulse"><i class="fas fa-rocket"></i> Launch Your Journey</a>
         </section>
 
-        <section id="open-source-concept" class="fade-in">
-            <h2><i class="fas fa-code-branch"></i> Open Source Concept</h2>
-            <p>Open source development is the practice of making the source code of software freely available to anyone, allowing them to view, modify, and distribute the code. This fosters collaboration, innovation, and the creation of new features by a community of developers.</p>
-            <h3>Why Open Source?</h3>
-            <ul>
-                <li><strong>Collaboration:</strong> Developers from around the world can contribute and improve the software.</li>
-                <li><strong>Transparency:</strong> Anyone can inspect the code to ensure there are no hidden vulnerabilities.</li>
-                <li><strong>Community-Driven:</strong> Open source projects often thrive because of the community that supports them.</li>
-                <li><strong>Freedom:</strong> Users and developers can customize the software to fit their needs.</li>
-            </ul>
-            <button id="bounty-button" class="btn">Explore Bounties</button>
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">$12M+</div>
+                <div class="stat-label">in Rewards Distributed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15K+</div>
+                <div class="stat-label">Projects Supported</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">98</div>
+                <div class="stat-label">Countries Represented</div>
+            </div>
         </section>
 
-        <section id="bounty-concept" class="fade-in">
-            <h2><i class="fas fa-trophy"></i> Bounty System Concept</h2>
-            <p>The bounty system enables individuals or organizations to offer rewards for solving specific problems or tasks within open-source projects. It’s an effective way to encourage contribution and maintain continuous project development.</p>
-            <h3>How the Bounty System Works</h3>
-            <ul>
-                <li><strong>Task Creation:</strong> A task or issue is posted in the repository, with details of what needs to be done.</li>
-                <li><strong>Bounty Offer:</strong> A bounty (a monetary or other reward) is attached to the task to incentivize contributors.</li>
-                <li><strong>Contribution:</strong> Developers submit a solution or improvement for the task posted.</li>
-                <li><strong>Reward Allocation:</strong> If the solution meets the requirements, the reward is given to the contributor.</li>
-            </ul>
-            <p>By participating in bounties, you can not only contribute to meaningful projects but also earn rewards for your skills and efforts.</p>
+        <section class="concept-card">
+            <h2 class="gradient-text"><i class="fas fa-code-branch"></i> The Open Source Revolution</h2>
+            <div class="feature-grid">
+                <div class="benefit-card">
+                    <div class="icon">🤝</div>
+                    <h3>Collaborative Innovation</h3>
+                    <p>Global developer collaboration creating robust, transparent solutions</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon">🔓</div>
+                    <h3>Transparent Codebase</h3>
+                    <p>Community-vetted code ensuring security and reliability</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon">🚀</div>
+                    <h3>Rapid Evolution</h3>
+                    <p>Continuous improvements through collective intelligence</p>
+                </div>
+            </div>
         </section>
 
-        <section id="live-feed" class="fade-in">
-            <h2><i class="fas fa-rss"></i> Live Activity Feed</h2>
-            <div id="activity-feed"></div>
+        <section class="concept-card">
+            <h2 class="gradient-text"><i class="fas fa-trophy"></i> Powering Contributions</h2>
+            <div class="bounty-process">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h4>Discover Opportunities</h4>
+                    <p>AI-curated bounties matching your skills</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h4>Collaborate Globally</h4>
+                    <p>Real-time coordination with maintainers</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h4>Earn & Grow</h4>
+                    <p>Get rewarded while building your reputation</p>
+                </div>
+            </div>
+            <div class="bounty-example">
+                <div class="bounty-card">
+                    <div class="bounty-header">
+                        <h4>Implement ZK-Rollups</h4>
+                        <div class="bounty-reward">$5,000 + 10 ETH</div>
+                    </div>
+                    <div class="bounty-meta">
+                        <span>🔧 Ethereum Core</span>
+                        <span>⏳ 14 Days Left</span>
+                        <span>👥 18 Contributors</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="concept-card">
+            <h2 class="gradient-text"><i class="fas fa-bolt"></i> Live Ecosystem Activity</h2>
+            <div class="activity-feed">
+                <div class="activity-item">
+                    <img src="avatar4.png" class="avatar" alt="User">
+                    <div>
+                        <p><strong>@web3_dev</strong> completed security audit for Uniswap v4</p>
+                        <div class="activity-meta">
+                            <span class="badge">🛡️ $8,000 Earned</span>
+                            <span class="time">2m ago</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- More activities... -->
+            </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 OpenBounty. All rights reserved.</p>
-    </footer>
+    <script>
+        // Cursor light effect
+        document.body.style.background = `radial-gradient(600px at 50% 50%, rgba(255, 255, 255, 0.1), var(--bg) 80%)`;
+        
+        document.body.addEventListener('mousemove', (e) => {
+            document.body.style.background = `
+                radial-gradient(
+                    600px at ${e.clientX}px ${e.clientY}px,
+                    rgba(255, 255, 255, 0.1),
+                    var(--bg) 80%
+                )
+            `;
+        });
 
-    <div id="ai-assistant" class="minimized" role="region" aria-label="AI Assistant" aria-expanded="false">
-        <div id="ai-assistant-header" role="button" tabindex="0" aria-label="Toggle AI Assistant">
-            <h3><i class="fas fa-robot"></i> AI Assistant</h3>
-            <button id="ai-assistant-toggle" aria-hidden="true"><i class="fas fa-expand-alt"></i></button>
-        </div>
-        <div id="ai-assistant-messages"></div>
-        <div id="ai-assistant-input">
-            <label for="ai-input" class="sr-only">Type your message</label>
-            <input type="text" id="ai-input" placeholder="Ask me anything..." aria-label="Type your message">
-            <button aria-label="Send message"><i class="fas fa-paper-plane"></i></button>
-        </div>
-    </div>
+        // Real-time activity updates
+        const eventSource = new EventSource('/live-activity');
+        eventSource.onmessage = (e) => {
+            const activity = JSON.parse(e.data);
+            const feed = document.querySelector('.activity-feed');
+            const newItem = createActivityItem(activity);
+            feed.prepend(newItem);
+        };
 
-    <button id="color-theme-toggle" aria-label="Toggle color theme">🎨</button>
-
-    <div class="page-transition"></div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="script.js"></script>
-    <script src="theme.js"></script>
-    <script src="ai-assistant.js"></script>
-    <script src="live-feed.js"></script>
+    </script>
 </body>
 </html>

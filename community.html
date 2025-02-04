@@ -6,9 +6,154 @@
     <title>OpenBounty - Community</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        /* Add cursor light effect */
+        body {
+            background: radial-gradient(
+                600px at 50% 50%,
+                rgba(255, 255, 255, 0.1),
+                var(--bg) 80%
+            );
+            transition: background 0.3s ease-out;
+        }
+
+        /* Previous styles remain unchanged */
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --accent: #2FEB99;
+            --bg: #0F172A;
+            --glass: rgba(15, 23, 42, 0.7);
+        }
+        
+        
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --accent: #2FEB99;
+            --bg: #0F172A;
+            --glass: rgba(15, 23, 42, 0.7);
+        }
+
+        body {
+            background: var(--bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+
+        #community-hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 0 0 40px 40px;
+            margin-bottom: 3rem;
+        }
+
+        .community-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 1rem 0;
+            transition: transform 0.3s ease;
+        }
+
+        .community-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .contributor-badge {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .event-card {
+            background: var(--glass);
+            padding: 1.5rem;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent);
+        }
+
+        .forum-thread {
+            background: var(--glass);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+
+        .live-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(108, 99, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0); }
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .avatar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .avatar:hover {
+            transform: scale(1.1);
+        }
+
+        .qa-bubble {
+            background: var(--glass);
+            padding: 1.5rem;
+            border-radius: 20px;
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .qa-bubble::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--glass);
+            transform: rotate(45deg);
+            bottom: -10px;
+            left: 40px;
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <header class="glass-header">
         <nav>
             <ul>
                 <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
@@ -16,124 +161,193 @@
                 <li><a href="bounties.html"><i class="fas fa-trophy"></i> Bounties</a></li>
                 <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
                 <li><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+                <li><a href="news.html"><i class="fas fa-project-diagram"></i> News</a></li>
                 <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
             </ul>
         </nav>
     </header>
 
+    
+        document.body.addEventListener('mousemove', (e) => {
+            document.body.style.background = `
+                radial-gradient(
+                    600px at ${e.clientX}px ${e.clientY}px,
+                    rgba(255, 255, 255, 0.1),
+                    var(--bg) 80%
+                )
+            `;
+        });
+
+        
+        document.body.addEventListener('mouseleave', () => {
+            document.body.style.background = `
+                radial-gradient(
+                    600px at 50% 50%,
+                    rgba(255, 255, 255, 0.1),
+                    var(--bg) 80%
+                )
+            `;
+        });
+
+        
+
     <main>
-        <section id="community-hero" class="fade-in">
-            <h1>Join Our Thriving Community</h1>
-            <p>Connect, collaborate, and grow with fellow developers</p>
+        <section id="community-hero" class="animate__animated animate__fadeIn">
+            <h1 class="gradient-text">Build with the <span class="live-pulse">Global Community</span> 🌍</h1>
+            <p>Connect with 50,000+ developers, maintainers, and open-source enthusiasts</p>
+            <div class="avatar-grid">
+                <!-- Dynamically generated avatars -->
+                <img src="avatar1.png" class="avatar" alt="Member">
+                <img src="avatar2.png" class="avatar" alt="Member">
+                <img src="avatar3.png" class="avatar" alt="Member">
+                <!-- More avatars... -->
+            </div>
         </section>
 
-        <!-- Open Source Explanation Section -->
-        <section id="open-source-explanation" class="fade-in">
-            <h2>What is Open Source?</h2>
-            <p>Open-source software is freely available for anyone to use, modify, and distribute. It's a collaborative effort to improve and enhance projects with contributions from developers worldwide. By contributing to open-source projects, you can develop your skills and help others while earning rewards through bounty programs.</p>
-            <button id="more-info" class="btn">Learn More About Open Source</button>
-        </section>
-
-        <!-- Community Highlights Section -->
-        <section id="community-highlights" class="fade-in">
-            <h2>Community Highlights</h2>
-            <div class="card-container">
-                <div class="card" data-aos="fade-up">
-                    <h3>Developer of the Month</h3>
-                    <div id="developer-of-month"></div>
+        <!-- Community Impact Section -->
+        <section class="community-card">
+            <h2>🚀 Collective Achievements</h2>
+            <div class="impact-stats">
+                <div class="stat">
+                    <div class="stat-number">$2.1M+</div>
+                    <div class="stat-label">in Bounties Distributed</div>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="100">
-                    <h3>Top Contributors</h3>
-                    <ul id="top-contributors"></ul>
+                <div class="stat">
+                    <div class="stat-number">15K+</div>
+                    <div class="stat-label">Projects Supported</div>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Recent Achievements</h3>
-                    <ul id="recent-achievements"></ul>
+                <div class="stat">
+                    <div class="stat-number">98</div>
+                    <div class="stat-label">Countries Represented</div>
                 </div>
             </div>
         </section>
 
-        <!-- Open Source Projects Section -->
-        <section id="open-source-projects" class="fade-in">
-            <h2>Explore Open Source Projects</h2>
-            <div id="open-source-projects-list">
-                <!-- Project items will be dynamically injected here by JavaScript -->
+        <!-- Live Collaboration Feed -->
+        <section class="community-card">
+            <h2>💻 Live Contributions</h2>
+            <div class="live-feed">
+                <div class="activity-item">
+                    <img src="avatar4.png" class="avatar" alt="User">
+                    <div>
+                        <p><strong>@satoshi_nakamoto</strong> just fixed a bug in Bitcoin Core</p>
+                        <div class="activity-meta">
+                            <span class="badge">🚀 5 ETH Earned</span>
+                            <span class="time-ago">2m ago</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- More activities... -->
             </div>
         </section>
 
-        <!-- Real-Time Bounty Opportunities Section -->
-        <section id="bounty-opportunities" class="fade-in">
-            <h2>Real-Time Bounty Opportunities</h2>
-            <div id="bounty-feed">
-                <ul>
-                    <li>Fix bug in project XYZ - Reward: $50</li>
-                    <li>Develop a new feature for OpenApp - Reward: $100</li>
-                    <li>Review pull requests for Project ABC - Reward: $25</li>
-                </ul>
-                <button id="view-all-bounties" class="btn">View All Bounties</button>
+        <!-- Expert AMA Section -->
+        <section class="community-card">
+            <h2>🎤 Live AMA Session</h2>
+            <div class="ama-container">
+                <div class="expert-profile">
+                    <img src="vitalik-avatar.png" class="avatar" alt="Vitalik">
+                    <div>
+                        <h3>Vitalik Buterin</h3>
+                        <p>Ethereum Founder - Answering Your Questions</p>
+                    </div>
+                </div>
+                <div class="ama-chat">
+                    <div class="message user">
+                        <p>What's the future of DAO governance?</p>
+                    </div>
+                    <div class="message expert">
+                        <p>DAO governance will evolve through...</p>
+                    </div>
+                </div>
+                <textarea placeholder="Ask your question..."></textarea>
             </div>
         </section>
 
-        <!-- Bounty Stats Section -->
-        <section id="bounty-stats" class="fade-in">
-            <h2>Live Bounty Stats</h2>
-            <div id="bounty-stats-list">
-                <!-- Bounty stats will be dynamically injected here by JavaScript -->
+        <!-- Learning Hub -->
+        <section class="community-card">
+            <h2>📚 Community Learning Hub</h2>
+            <div class="course-grid">
+                <div class="course-card">
+                    <div class="course-icon">🎓</div>
+                    <h3>Web3 Fundamentals</h3>
+                    <p>Master blockchain basics with our community-curated curriculum</p>
+                    <div class="enrollment">
+                        <span>👥 2,345 learners</span>
+                        <button class="cta-button">Enroll Free</button>
+                    </div>
+                </div>
+                <!-- More courses... -->
             </div>
         </section>
 
-        <!-- Q&A Section: Ask About Open Source/Bounties -->
-        <section id="community-qa" class="fade-in">
-            <h2>Ask About Open Source & Bounties</h2>
-            <p>Got questions? Ask our community experts about open-source contributions, bounty programs, and how you can get involved.</p>
-            <div id="qa-section">
-                <input type="text" id="question-input" placeholder="Ask your question...">
-                <button id="ask-question" class="btn">Ask</button>
+        <!-- Contributor Spotlight -->
+        <section class="community-card">
+            <h2>🌟 Featured Contributor</h2>
+            <div class="spotlight-profile">
+                <img src="contributor-avatar.png" class="avatar" alt="Contributor">
+                <div class="contributor-info">
+                    <h3>Sarah Johnson</h3>
+                    <p class="role">Full-Stack Developer from Kenya</p>
+                    <div class="achievements">
+                        <div class="badge">🏆 Top 1% Contributor</div>
+                        <div class="badge">💸 $45k Earned</div>
+                    </div>
+                    <blockquote>
+                        "OpenBounty helped me transition from traditional web development to Web3.
+                        The community support made all the difference!"
+                    </blockquote>
+                </div>
             </div>
-            <div id="qa-responses"></div>
         </section>
 
-        <!-- Community Events Section -->
-        <section id="community-events" class="fade-in">
-            <h2>Upcoming Events</h2>
-            <div id="events-calendar"></div>
-        </section>
-
-        <!-- Community Forum Section -->
-        <section id="community-forum" class="fade-in">
-            <h2>Community Forum</h2>
-            <div id="forum-preview"></div>
-            <a href="#" class="btn">Visit Full Forum</a>
-        </section>
-
-        <!-- Join the Community Section -->
-        <section id="join-community" class="fade-in">
-            <h2>Join Our Community</h2>
-            <p>Be part of our growing network of developers and contributors!</p>
-            <a href="#" class="btn pulse">Sign Up Now</a>
+        <!-- Interactive Map -->
+        <section class="community-card">
+            <h2>🌍 Global Contributor Network</h2>
+            <div id="contributor-map">
+                <!-- Interactive world map with contributor locations -->
+            </div>
+            <div class="map-legend">
+                <span class="dot" style="background: var(--primary)"></span> 1-50 Contributors
+                <span class="dot" style="background: var(--secondary)"></span> 51-200 Contributors
+                <span class="dot" style="background: var(--accent)"></span> 200+ Contributors
+            </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 OpenBounty. All rights reserved.</p>
-    </footer>
+    <script>
+        // Interactive map initialization
+        const map = L.map('contributor-map').setView([20, 0], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-    <button id="color-theme-toggle">🎨</button>
+        // Real-time activity updates
+        const eventSource = new EventSource('/community-updates');
+        eventSource.onmessage = (e) => {
+            const activity = JSON.parse(e.data);
+            const feed = document.querySelector('.live-feed');
+            const newItem = createActivityItem(activity);
+            feed.prepend(newItem);
+        };
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="community.js"></script>
-    <script src="theme.js"></script>
-    <script src="ai-assistant.js"></script>
-    <div id="ai-assistant" class="minimized">
-        <div id="ai-assistant-header">
-            <h3><i class="fas fa-robot"></i> AI Assistant</h3>
-            <button id="ai-assistant-toggle">↗</button>
-        </div>
-        <div id="ai-assistant-messages"></div>
-        <div id="ai-assistant-input">
-            <input type="text" placeholder="Ask me anything...">
-            <button><i class="fas fa-paper-plane"></i></button>
-        </div>
-    </div>
+        // Dynamic course enrollment
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', () => {
+                button.textContent = 'Enrolled! 🎉';
+                button.classList.add('enrolled');
+            });
+        });
+
+        // AMA chat functionality
+        const amaTextarea = document.querySelector('.ama-container textarea');
+        amaTextarea.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const question = e.target.value;
+                postQuestion(question);
+                e.target.value = '';
+            }
+        });
+    </script>
+
+    <!-- Remainder of footer and scripts... -->
 </body>
 </html>
