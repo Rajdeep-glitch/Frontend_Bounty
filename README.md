@@ -24,8 +24,7 @@ Frontend Bounty is a fun, interactive project designed to hone your frontend dev
 
 📂 Project Structure
 plaintext
-Copy
-Edit
+
 📦 Frontend_Bounty
  ┣ 📂 challenges/      # All bounty challenges live here
  ┣ 📂 solutions/       # Your awesome solutions go here!
@@ -50,22 +49,13 @@ Edit
 🎉 How to Contribute?
 👨‍💻 Fork & Clone:
 
-bash
-Copy
-Edit
 git clone https://github.com/Rajdeep-glitch/Frontend_Bounty.git
 cd Frontend_Bounty
 🌟 Pick a challenge, create a branch, and start coding!
 
-bash
-Copy
-Edit
 git checkout -b my-awesome-solution
 🔄 Push & Open a Pull Request!
 
-bash
-Copy
-Edit
 git add .
 git commit -m "Added my solution to Challenge XYZ"
 git push origin my-awesome-solution
